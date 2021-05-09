@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Emun.CoinMarketCap.Models.Enum;
 
 namespace Emun.CoinMarketCap.Models.Query
 {
@@ -28,7 +29,6 @@ namespace Emun.CoinMarketCap.Models.Query
         /// </summary>
         [JsonProperty("price_min")]
         public float MinimumPrice { get; set; }
-
 
         /// <summary>
         /// Optionally specify a threshold of maximum USD price to filter results by.
@@ -92,20 +92,47 @@ namespace Emun.CoinMarketCap.Models.Query
         public string Convert { get; set; }
 
         /// <summary>
-        /// Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical to convert outside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used when convert is used.
+        /// Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical to convert outside of ID format.
+        /// Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used when convert is used.
         /// </summary>
         [JsonProperty("convert_id")]
         public string ConvertId { get; set; }
 
+        [JsonProperty("sort")]
+        private string sort => SortBy.ToStr();
+        /// <summary>
+        /// What field to sort the list of cryptocurrencies by.
+        /// </summary>
+        [JsonIgnore]
+        public ListingLatestOrder SortBy { get; set; }
+
+        [JsonProperty("sort_dir")]
+        private string sortDir => SortDirection.ToStr();
 
         /// <summary>
-        /// What field to sort the list of cryptocurrencies by. Default is 'id' 
-        /// Valid Values : 'cmc_rank' and 'id'
+        /// The direction in which to order cryptocurrencies against the specified sort.
         /// </summary>
-        private string sort => "id";
+        [JsonIgnore]
+        public SortDir SortDirection { get; set; }
 
+        [JsonProperty("cryptocurrency_type")]
+        private string cryptocurrencyType => CryptocurrencyType.ToStr();
 
-        public string Symbol { get; set; }
+        /// <summary>
+        /// The type of cryptocurrency to include. Default is 'all'
+        /// </summary>
+        [JsonIgnore]
+        public CryptoType CryptocurrencyType { get; set; }
+
+        [JsonProperty("tag")]
+        private string tag => Tag.ToStr();
+
+        /// <summary>
+        /// The tag of cryptocurrency to include.
+        /// Default is 'all'
+        /// </summary>
+        [JsonIgnore]
+        public CryptoTag Tag { get; set; }
 
     }
 }

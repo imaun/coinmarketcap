@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using Emun.CoinMarketCap.Models.Enum;
 
-namespace Emun.CoinMarketCap.Models
-{
-    public static class Extensions
-    {
+namespace Emun.CoinMarketCap.Models {
 
-        public static string getSortOrder(this ListingLatestOrder order) {
+    public static class Extensions {
+
+        public static string ToStr(this ListingLatestOrder order) {
             switch(order) {
                 case ListingLatestOrder.CirculatingSupply: return "circulating_supply";
                 case ListingLatestOrder.MarketCap: return "market_cap";
@@ -30,5 +29,27 @@ namespace Emun.CoinMarketCap.Models
                 default: return "market_cap"; // according to API docs the default order is 'market_cap'
             };
         }
+
+        public static string ToStr(this SortDir dir)
+            => dir == SortDir.Asc ? "asc" : "desc";
+
+        public static string ToStr(this CryptoType cryptoType) {
+            switch(cryptoType) {
+                case CryptoType.All: return "all";
+                case CryptoType.Coins: return "coins";
+                case CryptoType.Tokens: return "tokens";
+                default: return "all";
+            }
+        }
+
+        public static string ToStr(this CryptoTag tag) {
+            switch(tag) {
+                case CryptoTag.All: return "all";
+                case CryptoTag.DeFi: return "defi";
+                case CryptoTag.FileSharing: return "filesharing";
+                default: return "all";
+            }
+        }
+
     }
 }
