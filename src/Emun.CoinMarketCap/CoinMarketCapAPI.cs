@@ -1,13 +1,12 @@
 ﻿using System;
+using System.Net;
 using System.Linq;
+using System.Net.Http;
 using System.Threading;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.Text;
-using System.Net.Http;
-using System.Net;
 using Newtonsoft.Json;
-using System.Reflection;
 using Emun.CoinMarketCap.Models;
 using Emun.CoinMarketCap.Models.Enum;
 
@@ -34,6 +33,7 @@ namespace Emun.CoinMarketCap {
             _httpClientFactory = httpClientFactory
                 ?? throw new ArgumentNullException(nameof(httpClientFactory));
             _httpClient = _httpClientFactory.CreateClient();
+            _httpClient.BaseAddress = new Uri("https://pro-api.coinmarketcap.com/v1/");
             _apiKey = apiKey;
             addDefaultHeaders();
         }
@@ -42,7 +42,7 @@ namespace Emun.CoinMarketCap {
 
         #endregion
 
-        #region Methods
+        #region Private Helper Methods
 
         private void addDefaultHeaders() {
             _httpClient.DefaultRequestHeaders.Clear();
@@ -77,12 +77,31 @@ namespace Emun.CoinMarketCap {
 
             if(response.IsSuccessStatusCode || _validStatusCodes.Contains(response.StatusCode)) {
                 var content = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"Response : {content}");
                 return JsonConvert.DeserializeObject<ApiResponse<T>>(content);
             }
 
             response.EnsureSuccessStatusCode();
             return null;
         }
+
+        #endregion
+
+        #region Methods
+
+        public async Task<ApiResponse<List<LatestCryptoData>>> GetListingsLatestAsync(
+            ListingsLatestQuery request,
+            CancellationToken cancellationToken) {
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
+
+            var result = await getApiResponseAsync<List<LatestCryptoData>>
+                (request, "cryptocurrency/listings/latest", cancellationToken);
+
+            return await Task.FromResult(result);
+        }
+        
+        public async Task<>
 
         #endregion
     }
