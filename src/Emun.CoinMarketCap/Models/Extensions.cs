@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Emun.CoinMarketCap.Models.Enum;
 
 namespace Emun.CoinMarketCap.Models {
@@ -51,5 +49,13 @@ namespace Emun.CoinMarketCap.Models {
             }
         }
 
+        private static DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
+        public static DateTime FromUnixTime(this Int64 unixTime) 
+            => epoch.AddSeconds(unixTime);
+        
+        public static long ToUnixTime(this DateTime date) 
+            => Convert.ToInt64((date.ToUniversalTime() - epoch).TotalSeconds);
+        
     }
 }

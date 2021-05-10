@@ -25,13 +25,13 @@ namespace Emun.CoinMarketCap.Models {
         public int NumberOfMarketPairs { get; set; }
 
         [JsonProperty("circulating_supply")]
-        public double CirculatingSupply { get; set; }
+        public long? CirculatingSupply { get; set; }
 
         [JsonProperty("total_supply")]
-        public double TotalSupply { get; set; }
+        public long? TotalSupply { get; set; }
 
         [JsonProperty("max_supply")]
-        public double MaxSupply { get; set; }
+        public long? MaxSupply { get; set; }
 
         [JsonProperty("last_updated")]
         public DateTimeOffset? LastUpdated { get; set; }
@@ -43,7 +43,7 @@ namespace Emun.CoinMarketCap.Models {
         public string[] Tags { get; set; }
 
         [JsonProperty("platform")]
-        public string Platform { get; set; }
+        public object Platform { get; set; }
 
         [JsonProperty("quote")]
         public Dictionary<string, CryptoPriceQuote> Quote { get; set; }

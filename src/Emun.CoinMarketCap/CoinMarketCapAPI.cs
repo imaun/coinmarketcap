@@ -14,7 +14,6 @@ namespace Emun.CoinMarketCap {
 
     public class CoinMarketCapAPI {
 
-        private readonly IHttpClientFactory _httpClientFactory;
         private readonly HttpClient _httpClient;
         private string _apiKey;
 
@@ -26,13 +25,13 @@ namespace Emun.CoinMarketCap {
             (HttpStatusCode)429
         };
 
-        public CoinMarketCapAPI(IHttpClientFactory httpClientFactory, string apiKey) {
+        public CoinMarketCapAPI(HttpClient httpClient, string apiKey) {
             if (string.IsNullOrWhiteSpace(apiKey))
-                throw new ArgumentNullException("Please pass CointMarketCap ApiKey.");
+                throw new ArgumentNullException("Please pass CointMarketCap's ApiKey.");
 
-            _httpClientFactory = httpClientFactory
-                ?? throw new ArgumentNullException(nameof(httpClientFactory));
-            _httpClient = _httpClientFactory.CreateClient();
+            _httpClient = httpClient
+                ?? throw new ArgumentNullException(nameof(httpClient));
+
             _httpClient.BaseAddress = new Uri("https://pro-api.coinmarketcap.com/v1/");
             _apiKey = apiKey;
             addDefaultHeaders();
@@ -47,7 +46,7 @@ namespace Emun.CoinMarketCap {
         private void addDefaultHeaders() {
             _httpClient.DefaultRequestHeaders.Clear();
             _httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
-            _httpClient.DefaultRequestHeaders.Add("Content-Type", "application/json; charset=utf-8");
+            //_httpClient.DefaultRequestHeaders.Add("Content-Type", "application/json; charset=utf-8");
             _httpClient.DefaultRequestHeaders.Add("X-CMC_PRO_API_KEY", _apiKey);
         }
 
@@ -60,13 +59,17 @@ namespace Emun.CoinMarketCap {
                 value = _.GetValue(obj)
             }).Where(_ => _.value != null && !string.IsNullOrWhiteSpace(_.name));
 
-            var query = parameters.Select(_ => $"{_.name}={urlEncode(_.value.ToString())}");
-            var result = query.Select((_, __) => __ > 0 ? $"&?{_}" : $"{__}");
+            var query = parameters.Select(_ 
+                => $"{_.name}={urlEncode(_.value.ToString())}"
+            );
+            var result = query.Select((field, index) 
+                => index > 0 ? $"&{field}" : $"?{field}"
+            );
 
             return string.Join("", result);
         }
 
-        private async Task<ApiResponse<T>> getApiResponseAsync<T>(object request, string url, CancellationToken cancelToken) where T: class {
+        private async Task<ApiResponse<T>> getApiResponseAsync<T>(object request, string url, CancellationToken cancelToken) where T : class {
             if (request == null)
                 throw new ArgumentNullException(nameof(request));
 
@@ -75,7 +78,7 @@ namespace Emun.CoinMarketCap {
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, url);
             var response = await _httpClient.SendAsync(httpRequest, cancelToken);
 
-            if(response.IsSuccessStatusCode || _validStatusCodes.Contains(response.StatusCode)) {
+            if (response.IsSuccessStatusCode || _validStatusCodes.Contains(response.StatusCode)) {
                 var content = await response.Content.ReadAsStringAsync();
                 Console.WriteLine($"Response : {content}");
                 return JsonConvert.DeserializeObject<ApiResponse<T>>(content);
@@ -100,9 +103,8 @@ namespace Emun.CoinMarketCap {
 
             return await Task.FromResult(result);
         }
-        
-        public async Task<>
 
         #endregion
+       
     }
 }

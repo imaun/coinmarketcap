@@ -28,60 +28,60 @@ namespace Emun.CoinMarketCap.Models
         /// Optionally specify a threshold of minimum USD price to filter results by.
         /// </summary>
         [JsonProperty("price_min")]
-        public double MinimumPrice { get; set; }
+        public double? MinimumPrice { get; set; }
 
         /// <summary>
         /// Optionally specify a threshold of maximum USD price to filter results by.
         /// </summary>
         [JsonProperty("price_max")]
-        public double MaximumPrice { get; set; }
+        public double? MaximumPrice { get; set; }
 
         /// <summary>
         /// Optionally specify a threshold of minimum market cap to filter results by.
         /// </summary>
         [JsonProperty("market_cap_min")]
-        public double MinimumMarketCap { get; set; }
+        public double? MinimumMarketCap { get; set; }
 
         [JsonProperty("market_cap_max")]
-        public double MaximumMarketCap { get; set; }
+        public double? MaximumMarketCap { get; set; }
 
         /// <summary>
         /// Optionally specify a threshold of minimum 24 hour USD volume to filter results by.
         /// </summary>
         [JsonProperty("volume_24h_min")]
-        public double Minimum24hVolume { get; set; }
+        public double? Minimum24hVolume { get; set; }
 
         /// <summary>
         /// Optionally specify a threshold of maximum 24 hour USD volume to filter results by.
         /// </summary>
         [JsonProperty("volume_24h_max")]
-        public double Maximum24hVolume { get; set; }
+        public double? Maximum24hVolume { get; set; }
 
         /// <summary>
         /// Optionally specify a threshold of minimum circulating supply to filter results by.
         /// </summary>
         [JsonProperty("circulating_supply_min")]
-        public double MinimumCirculatingSupply { get; set; }
+        public double? MinimumCirculatingSupply { get; set; }
 
         /// <summary>
         /// Optionally specify a threshold of maximum circulating supply to filter results by.
         /// </summary>
         [JsonProperty("circulating_supply_max")]
-        public double MaximumCirculatingSupply { get; set; }
+        public double? MaximumCirculatingSupply { get; set; }
 
         /// <summary>
         /// Optionally specify a threshold of minimum 24 hour percent change to filter results by.
         /// >=-100
         /// </summary>
         [JsonProperty("percent_change_24h_min")]
-        public double MinimumPercentChange24h { get; set; }
+        public double? MinimumPercentChange24h { get; set; }
 
         /// <summary>
         /// Optionally specify a threshold of maximum 24 hour percent change to filter results by.
         /// >=-100
         /// </summary>
         [JsonProperty("percent_change_24h_max")]
-        public double MaximumPercentChange24h { get; set; }
+        public double? MaximumPercentChange24h { get; set; }
 
         /// <summary>
         /// Optionally calculate market quotes in up to 120 currencies at once by passing a comma-separated list of cryptocurrency or 
