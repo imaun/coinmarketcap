@@ -46,7 +46,7 @@ namespace Emun.CoinMarketCap {
         private void addDefaultHeaders() {
             _httpClient.DefaultRequestHeaders.Clear();
             _httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
-            //_httpClient.DefaultRequestHeaders.Add("Content-Type", "application/json; charset=utf-8");
+            _httpClient.DefaultRequestHeaders.Add("Accept-Encoding", "deflate, gzip");
             _httpClient.DefaultRequestHeaders.Add("X-CMC_PRO_API_KEY", _apiKey);
         }
 
