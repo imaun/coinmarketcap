@@ -1,8 +1,7 @@
 ﻿using Newtonsoft.Json;
-using Emun.CoinMarketCap.Models.Enum;
 
-namespace Emun.CoinMarketCap.Models
-{
+namespace Emun.CoinMarketCap {
+
     /// <summary>
     /// Returns a paginated list of all active cryptocurrencies with latest market data. The default "market_cap" sort returns cryptocurrency 
     /// in order of CoinMarketCap's market cap rank (as outlined in our methodology) but you may configure this call to order by another market 

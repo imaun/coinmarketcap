@@ -1,4 +1,4 @@
-﻿namespace Emun.CoinMarketCap.Models.Enum {
+﻿namespace Emun.CoinMarketCap {
 
     public enum ListingLatestOrder {
 

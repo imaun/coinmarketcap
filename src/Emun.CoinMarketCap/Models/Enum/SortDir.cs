@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Emun.CoinMarketCap.Models.Enum {
+﻿namespace Emun.CoinMarketCap {
 
     public enum SortDir {
         Asc = 1,

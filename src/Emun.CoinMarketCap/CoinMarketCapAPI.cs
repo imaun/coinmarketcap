@@ -7,8 +7,6 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using Emun.CoinMarketCap.Models;
-using Emun.CoinMarketCap.Models.Enum;
 
 namespace Emun.CoinMarketCap {
 

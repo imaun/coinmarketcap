@@ -1,7 +1,6 @@
 ﻿using System;
-using Emun.CoinMarketCap.Models.Enum;
 
-namespace Emun.CoinMarketCap.Models {
+namespace Emun.CoinMarketCap {
 
     public static class Extensions {
 
