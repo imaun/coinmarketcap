@@ -10,7 +10,8 @@ using Newtonsoft.Json;
 
 namespace Emun.CoinMarketCap {
 
-    public class CoinMarketCapAPI {
+    /// <inheritdoc/>
+    public class CoinMarketCapAPI: ICoinMarketCapAPI {
 
         private readonly HttpClient _httpClient;
         private string _apiKey;
@@ -98,6 +99,7 @@ namespace Emun.CoinMarketCap {
 
         #region Methods
 
+        /// <inheritdoc/>
         public async Task<ListingLatestResult> GetListingsLatestAsync(
             ListingsLatestQuery request,
             CancellationToken cancellationToken) {
