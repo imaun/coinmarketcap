@@ -23,6 +23,10 @@ namespace Emun.CoinMarketCap {
             (HttpStatusCode)429
         };
 
+        //private HttpStatusCode[] _errorCodes = new HttpStatusCode[] {
+        //    (HttpStatusCode)
+        //};
+
         public CoinMarketCapAPI(HttpClient httpClient, string apiKey) {
             if (string.IsNullOrWhiteSpace(apiKey))
                 throw new ArgumentNullException("Please pass CointMarketCap's ApiKey.");
@@ -43,8 +47,8 @@ namespace Emun.CoinMarketCap {
 
         private void addDefaultHeaders() {
             _httpClient.DefaultRequestHeaders.Clear();
-            _httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
-            _httpClient.DefaultRequestHeaders.Add("Accept-Encoding", "deflate, gzip");
+            _httpClient.DefaultRequestHeaders.Add("Accept", "application/json;charset=UTF-8");
+            _httpClient.DefaultRequestHeaders.Add("Accept-Encoding", "UTF-8");
             _httpClient.DefaultRequestHeaders.Add("X-CMC_PRO_API_KEY", _apiKey);
         }
 
@@ -79,7 +83,11 @@ namespace Emun.CoinMarketCap {
             if (response.IsSuccessStatusCode || _validStatusCodes.Contains(response.StatusCode)) {
                 var content = await response.Content.ReadAsStringAsync();
                 Console.WriteLine($"Response : {content}");
-                return JsonConvert.DeserializeObject<ApiResponse<T>>(content);
+                var result = JsonConvert.DeserializeObject<ApiResponse<T>>(content);
+                if(result.Status.HasError) {
+                    throw new CoinMarketCapException(message: result.Status.ErrorCode.Message());
+                }
+                return result;
             }
 
             response.EnsureSuccessStatusCode();
@@ -90,16 +98,17 @@ namespace Emun.CoinMarketCap {
 
         #region Methods
 
-        public async Task<ApiResponse<List<LatestCryptoData>>> GetListingsLatestAsync(
+        public async Task<ListingLatestResult> GetListingsLatestAsync(
             ListingsLatestQuery request,
             CancellationToken cancellationToken) {
+
             if (request == null)
                 throw new ArgumentNullException(nameof(request));
 
-            var result = await getApiResponseAsync<List<LatestCryptoData>>
+            var api_result = await getApiResponseAsync<List<LatestCryptoData>>
                 (request, "cryptocurrency/listings/latest", cancellationToken);
 
-            return await Task.FromResult(result);
+            return await Task.FromResult(ListingLatestResult.From(api_result));
         }
 
         #endregion

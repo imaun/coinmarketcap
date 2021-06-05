@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Emun.CoinMarketCap.Models;
 
 namespace Emun.CoinMarketCap {
 
@@ -43,7 +44,7 @@ namespace Emun.CoinMarketCap {
         public string[] Tags { get; set; }
 
         [JsonProperty("platform", NullValueHandling = NullValueHandling.Ignore)]
-        public string Platform { get; set; }
+        public CryptoPlatform Platform { get; set; }
 
         [JsonProperty("quote")]
         public Dictionary<string, CryptoPriceQuote> Quote { get; set; }
