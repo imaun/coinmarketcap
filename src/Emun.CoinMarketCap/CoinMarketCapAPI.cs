@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Emun.CoinMarketCap.Models;
 
 namespace Emun.CoinMarketCap {
 
@@ -23,10 +24,6 @@ namespace Emun.CoinMarketCap {
             HttpStatusCode.PaymentRequired,
             (HttpStatusCode)429
         };
-
-        //private HttpStatusCode[] _errorCodes = new HttpStatusCode[] {
-        //    (HttpStatusCode)
-        //};
 
         public CoinMarketCapAPI(HttpClient httpClient, string apiKey) {
             if (string.IsNullOrWhiteSpace(apiKey))
@@ -113,7 +110,21 @@ namespace Emun.CoinMarketCap {
             return await Task.FromResult(ListingLatestResult.From(api_result));
         }
 
+        /// <inheritdoc />
+        public async Task<ListingLatestResult> GetQuotesLatestAsync(
+            QuotesLatestQuery request,
+            CancellationToken cancellationToken) {
+
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
+
+            var api_result = await getApiResponseAsync<List<LatestCryptoData>>
+                (request, "cryptocurrency/quotes/latest", cancellationToken);
+
+            return await Task.FromResult(ListingLatestResult.From(api_result));
+        }
+
         #endregion
-       
+
     }
 }
