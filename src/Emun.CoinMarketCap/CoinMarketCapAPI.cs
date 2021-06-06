@@ -124,6 +124,21 @@ namespace Emun.CoinMarketCap {
             return await Task.FromResult(ListingLatestResult.From(api_result));
         }
 
+        /// <inheritdoc />
+        public async Task<MetadataResult> GetMetadataAsync(
+            MetadataQuery request, 
+            CancellationToken cancellationToken) {
+
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
+
+            var api_result = await getApiResponseAsync<
+                    List<Dictionary<string, CryptoCurrencyData>>
+                >(request, "cryptocurrency/info", cancellationToken);
+
+            return await Task.FromResult(MetadataResult.From(api_result));
+        }
+
         #endregion
 
     }
