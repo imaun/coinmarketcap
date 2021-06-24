@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Emun.CoinMarketCap.Models;
 
 namespace Emun.CoinMarketCap {
+
     /// <summary>
     /// Provides CoinMarketCap API v1 endpoint services.
     /// According to the official docs : https://coinmarketcap.com/api/documentation/v1/
@@ -32,7 +33,7 @@ namespace Emun.CoinMarketCap {
         /// to order by another market ranking field. Use the "convert" option to return market
         /// values in multiple fiat and cryptocurrency conversions in the same call.
         /// This endpoint is available on the following API plans:
-        /// 
+        /// [Basic, Hobbyist, Startup, Standard, Professional, Enterprise]
         /// </summary>
         /// <param name="request">Query data to filter output result.</param>
         /// <param name="cancellationToken"></param>
@@ -41,9 +42,12 @@ namespace Emun.CoinMarketCap {
             ListingsLatestQuery request,
             CancellationToken cancellationToken);
 
+
         /// <summary>
         /// This endpoint is identical in format to our /cryptocurrency/listings/latest endpoint but is used to retrieve historical daily ranking snapshots from the end of each UTC day.
         /// Daily snapshots reflect market data at the end of each UTC day and may be requested as far back as 2013-04-28 (as supported by your plan's historical limits).
+        /// This endpoint is available on the following API plans:
+        /// [Standard (3 months), Professional (12 months), Enterprise (Up to 6 years)]
         /// </summary>
         /// <param name="request">Query data to filter output result.</param>
         /// <param name="cancellationToken"></param>

@@ -12,15 +12,17 @@ namespace Emun.CoinMarketCap {
 
         /// <summary>
         /// Optionally offset the start (1-based index) of the paginated list of items to return.
+        /// Default = 1; Must be >= 1
         /// </summary>
         [JsonProperty("start")]
-        public int? Start { get; set; }
+        public int Start { get; set; } = 1;
 
         /// <summary>
         /// Optionally specify the number of results to return. Use this parameter and the "start" parameter to determine your own pagination size.
+        /// Default = 100; Range = 1...5000
         /// </summary>
         [JsonProperty("limit")]
-        public int? Limit { get; set; }
+        public int? Limit { get; set; } = 100;
 
         /// <summary>
         /// Optionally specify a threshold of minimum USD price to filter results by.
