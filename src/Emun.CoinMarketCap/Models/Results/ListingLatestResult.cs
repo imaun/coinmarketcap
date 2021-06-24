@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Emun.CoinMarketCap.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 

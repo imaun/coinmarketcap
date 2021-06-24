@@ -2,11 +2,11 @@
 using System.Net;
 using System.Linq;
 using System.Net.Http;
+using Newtonsoft.Json;
 using System.Threading;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 using Emun.CoinMarketCap.Models;
 
 namespace Emun.CoinMarketCap {
@@ -26,6 +26,7 @@ namespace Emun.CoinMarketCap {
         };
 
         public CoinMarketCapAPI(HttpClient httpClient, string apiKey) {
+            
             if (string.IsNullOrWhiteSpace(apiKey))
                 throw new ArgumentNullException("Please pass CointMarketCap's ApiKey.");
 
@@ -101,8 +102,7 @@ namespace Emun.CoinMarketCap {
             ListingsLatestQuery request,
             CancellationToken cancellationToken) {
 
-            if (request == null)
-                throw new ArgumentNullException(nameof(request));
+            request.CheckArgumentIsNull(nameof(request));
 
             var api_result = await getApiResponseAsync<List<LatestCryptoData>>
                 (request, "cryptocurrency/listings/latest", cancellationToken);
@@ -115,28 +115,40 @@ namespace Emun.CoinMarketCap {
             QuotesLatestQuery request,
             CancellationToken cancellationToken) {
 
-            if (request == null)
-                throw new ArgumentNullException(nameof(request));
+
+            request.CheckArgumentIsNull(nameof(request));
 
             var api_result = await getApiResponseAsync<List<LatestCryptoData>>
                 (request, "cryptocurrency/quotes/latest", cancellationToken);
 
             return await Task.FromResult(ListingLatestResult.From(api_result));
         }
-        
+
         /// <inheritdoc />
         public async Task<MetadataResult> GetMetadataAsync(
-            MetadataQuery request, 
+            MetadataQuery request,
             CancellationToken cancellationToken) {
 
-            if (request == null)
-                throw new ArgumentNullException(nameof(request));
+            request.CheckArgumentIsNull(nameof(request));
 
-            var api_result = await getApiResponseAsync<
-                    List<Dictionary<string, CryptoCurrencyData>>
-                >(request, "cryptocurrency/info", cancellationToken);
+            var api_result = await getApiResponseAsync
+                <List<Dictionary<string, CryptoCurrencyData>>>
+                    (request, "cryptocurrency/info", cancellationToken);
 
             return await Task.FromResult(MetadataResult.From(api_result));
+        }
+
+        /// <inheritdoc />
+        public async Task<IdMapResult> MapAsync(
+            IdMapQuery request,
+            CancellationToken cancellationToken) {
+
+            request.CheckArgumentIsNull(nameof(request));
+
+            var api_result = await getApiResponseAsync<List<CryptoCurrencyIdMapData>>
+                (request, "cryptocurrency/map", cancellationToken);
+
+            return await Task.FromResult(IdMapResult.From(api_result));
         }
 
         #endregion
