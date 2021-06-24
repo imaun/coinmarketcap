@@ -98,7 +98,7 @@ namespace Emun.CoinMarketCap {
         #region Methods
 
         /// <inheritdoc/>
-        public async Task<ListingLatestResult> GetListingsLatestAsync(
+        public async Task<ListingResult> GetListingsLatestAsync(
             ListingsLatestQuery request,
             CancellationToken cancellationToken) {
 
@@ -107,11 +107,27 @@ namespace Emun.CoinMarketCap {
             var api_result = await getApiResponseAsync<List<LatestCryptoData>>
                 (request, "cryptocurrency/listings/latest", cancellationToken);
 
-            return await Task.FromResult(ListingLatestResult.From(api_result));
+            return await Task.FromResult(ListingResult.From(api_result));
+        }
+
+        /// <inheritdoc/>
+        public async Task<ListingResult> GetListingHistoricalAsync(
+            ListingHistoricalQuery request,
+            CancellationToken cancellationToken) {
+
+            request.CheckArgumentIsNull(nameof(request));
+
+            if (string.IsNullOrWhiteSpace(request.date))
+                throw new ArgumentNullException("date");
+
+            var api_result = await getApiResponseAsync<List<LatestCryptoData>>
+                (request, "cryptocurrency/listings/historical", cancellationToken);
+
+            return await Task.FromResult(ListingResult.From(api_result));
         }
 
         /// <inheritdoc />
-        public async Task<ListingLatestResult> GetQuotesLatestAsync(
+        public async Task<ListingResult> GetQuotesLatestAsync(
             QuotesLatestQuery request,
             CancellationToken cancellationToken) {
 
@@ -121,7 +137,7 @@ namespace Emun.CoinMarketCap {
             var api_result = await getApiResponseAsync<List<LatestCryptoData>>
                 (request, "cryptocurrency/quotes/latest", cancellationToken);
 
-            return await Task.FromResult(ListingLatestResult.From(api_result));
+            return await Task.FromResult(ListingResult.From(api_result));
         }
 
         /// <inheritdoc />

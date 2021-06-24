@@ -4,7 +4,8 @@ using Emun.CoinMarketCap.Models;
 
 namespace Emun.CoinMarketCap {
     /// <summary>
-    /// 
+    /// Provides CoinMarketCap API v1 endpoint services.
+    /// According to the official docs : https://coinmarketcap.com/api/documentation/v1/
     /// </summary>
     public interface ICoinMarketCapAPI {
 
@@ -36,8 +37,19 @@ namespace Emun.CoinMarketCap {
         /// <param name="request">Query data to filter output result.</param>
         /// <param name="cancellationToken"></param>
         /// <returns>Returns a paginated list of all active cryptocurrencies with latest market data</returns>
-        Task<ListingLatestResult> GetListingsLatestAsync(
+        Task<ListingResult> GetListingsLatestAsync(
             ListingsLatestQuery request,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// This endpoint is identical in format to our /cryptocurrency/listings/latest endpoint but is used to retrieve historical daily ranking snapshots from the end of each UTC day.
+        /// Daily snapshots reflect market data at the end of each UTC day and may be requested as far back as 2013-04-28 (as supported by your plan's historical limits).
+        /// </summary>
+        /// <param name="request">Query data to filter output result.</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns>Returns a ranked and sorted list of all cryptocurrencies for a historical UTC date.</returns>
+        Task<ListingResult> GetListingHistoricalAsync(
+            ListingHistoricalQuery request,
             CancellationToken cancellationToken);
 
         /// <summary>
@@ -49,7 +61,7 @@ namespace Emun.CoinMarketCap {
         /// <param name="request">Query data to filter output result.</param>
         /// <param name="cancellationToken"></param>
         /// <returns>Returns the latest market quote for 1 or more cryptocurrencies</returns>
-        Task<ListingLatestResult> GetQuotesLatestAsync(
+        Task<ListingResult> GetQuotesLatestAsync(
             QuotesLatestQuery request,
             CancellationToken cancellationToken);
 

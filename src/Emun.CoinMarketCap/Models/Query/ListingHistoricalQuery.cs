@@ -1,11 +1,13 @@
 ﻿using Newtonsoft.Json;
 
-namespace Emun.CoinMarketCap.Models.Query {
+namespace Emun.CoinMarketCap.Models {
 
     public class ListingHistoricalQuery {
 
         /// <summary>
-        /// Required. date (Unix or ISO 8601) to reference day of snapshot.
+        /// Required. (Unix or ISO 8601) to reference day of snapshot.
+        /// The required "date" parameter can be passed as a Unix timestamp or ISO 8601 date but only the date portion of the timestamp will be referenced.
+        /// It is recommended to send an ISO date format like "2019-10-10" without time.
         /// </summary>
         [JsonProperty]
         public string date { get; set; }
@@ -16,7 +18,6 @@ namespace Emun.CoinMarketCap.Models.Query {
         /// </summary>
         [JsonProperty("start")]
         public int Start { get; set; } = 1;
-
 
         /// <summary>
         /// Optionally specify the number of results to return. Use this parameter and the "start" parameter to determine your own pagination size.
