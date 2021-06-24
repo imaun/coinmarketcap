@@ -11,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{95D3
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emun.CoinMarketCap.CliSample", "samples\Emun.CoinMarketCap.CliSample\Emun.CoinMarketCap.CliSample.csproj", "{EBB012C0-481A-41E0-A9B8-68E7C03A570D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleRichTextBox", "samples\SampleRichTextBox\SampleRichTextBox.csproj", "{8184F6BC-E6E1-4534-88BD-C5DE779614B7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,10 +25,6 @@ Global
 		{EBB012C0-481A-41E0-A9B8-68E7C03A570D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBB012C0-481A-41E0-A9B8-68E7C03A570D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBB012C0-481A-41E0-A9B8-68E7C03A570D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8184F6BC-E6E1-4534-88BD-C5DE779614B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8184F6BC-E6E1-4534-88BD-C5DE779614B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8184F6BC-E6E1-4534-88BD-C5DE779614B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8184F6BC-E6E1-4534-88BD-C5DE779614B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,7 +32,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{BCCB130D-6C21-4E2C-B310-55D3422AC933} = {3491CB6F-AB58-4CFE-B529-68CBFA886A7E}
 		{EBB012C0-481A-41E0-A9B8-68E7C03A570D} = {95D3181E-A0D5-47D2-ADD7-C32CBF00EC8B}
-		{8184F6BC-E6E1-4534-88BD-C5DE779614B7} = {95D3181E-A0D5-47D2-ADD7-C32CBF00EC8B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FF490B51-7EA8-4B15-9BE2-B03B8E2D6B8E}

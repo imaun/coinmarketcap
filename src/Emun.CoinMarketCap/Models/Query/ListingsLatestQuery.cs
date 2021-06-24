@@ -98,7 +98,7 @@ namespace Emun.CoinMarketCap {
         public string ConvertId { get; set; }
 
         [JsonProperty("sort")]
-        private string sort => SortBy.ToStr();
+        private string sort => SortBy.ToStrValue();
         /// <summary>
         /// What field to sort the list of cryptocurrencies by.
         /// </summary>
@@ -106,7 +106,7 @@ namespace Emun.CoinMarketCap {
         public ListingLatestOrder SortBy { get; set; }
 
         [JsonProperty("sort_dir")]
-        private string sortDir => SortDirection.ToStr();
+        private string sortDir => SortDirection.ToStrValue();
 
         /// <summary>
         /// The direction in which to order cryptocurrencies against the specified sort.
@@ -115,7 +115,7 @@ namespace Emun.CoinMarketCap {
         public SortDir SortDirection { get; set; }
 
         [JsonProperty("cryptocurrency_type")]
-        private string cryptocurrencyType => CryptocurrencyType.ToStr();
+        private string cryptocurrencyType => CryptocurrencyType.ToStrValue();
 
         /// <summary>
         /// The type of cryptocurrency to include. Default is 'all'
@@ -124,7 +124,7 @@ namespace Emun.CoinMarketCap {
         public CryptoType CryptocurrencyType { get; set; }
 
         [JsonProperty("tag")]
-        private string tag => Tag.ToStr();
+        private string tag => Tag.ToStrValue();
 
         /// <summary>
         /// The tag of cryptocurrency to include.

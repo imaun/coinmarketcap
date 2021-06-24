@@ -123,7 +123,7 @@ namespace Emun.CoinMarketCap {
 
             return await Task.FromResult(ListingLatestResult.From(api_result));
         }
-
+        
         /// <inheritdoc />
         public async Task<MetadataResult> GetMetadataAsync(
             MetadataQuery request, 
