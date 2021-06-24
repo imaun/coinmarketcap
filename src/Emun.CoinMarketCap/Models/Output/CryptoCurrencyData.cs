@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Emun.CoinMarketCap.Models
-{
-    public class CryptoCurrencyData {
+namespace Emun.CoinMarketCap.Models {
 
+    public class CryptoCurrencyData {
 
         [JsonProperty("id")]
         public long Id { get; set; }

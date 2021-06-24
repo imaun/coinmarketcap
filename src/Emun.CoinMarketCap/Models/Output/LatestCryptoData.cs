@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Emun.CoinMarketCap.Models;
 
-namespace Emun.CoinMarketCap {
+namespace Emun.CoinMarketCap.Models {
 
     public class LatestCryptoData {
 

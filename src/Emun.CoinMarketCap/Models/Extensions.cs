@@ -57,6 +57,13 @@ namespace Emun.CoinMarketCap {
                 _ => CoinMarketCap_ListingStatus.active
             };
 
+        public static string ToStrValue(this IdMapSort sort)
+            => sort switch {
+                IdMapSort.Id => "id",
+                IdMapSort.Rank => "cmc_rank",
+                _=> "id"
+            };
+
         private static DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
         public static DateTime FromUnixTime(this Int64 unixTime) 

@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace Emun.CoinMarketCap {
+namespace Emun.CoinMarketCap.Models {
 
     public class CryptoPriceQuote {
 

@@ -10,7 +10,6 @@ namespace Emun.CoinMarketCap {
     /// </summary>
     public class ListingsLatestQuery {
 
-
         /// <summary>
         /// Optionally offset the start (1-based index) of the paginated list of items to return.
         /// </summary>
