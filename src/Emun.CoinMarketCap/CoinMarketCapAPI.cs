@@ -167,6 +167,19 @@ namespace Emun.CoinMarketCap {
             return await Task.FromResult(IdMapResult.From(api_result));
         }
 
+        /// <inheritdoc />
+        public async Task<PriceConversionResult> PriceConversionAsync(
+            PriceConversionQuery request,
+            CancellationToken cancellationToken) {
+
+            request.CheckArgumentIsNull(nameof(request));
+
+            var api_result = await getApiResponseAsync<PriceConversionData>
+                (request, "tools/price-conversion", cancellationToken);
+
+            return await Task.FromResult(PriceConversionResult.From(api_result));
+        }
+
         #endregion
 
     }

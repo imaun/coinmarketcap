@@ -27,4 +27,13 @@ namespace Emun.CoinMarketCap.Models {
         public DateTimeOffset? LastUpdated { get; set; }
 
     }
+
+    public class CryptoSinglePriceQuote {
+        
+        [JsonProperty("price")]
+        public double Price { get; set; }
+
+        [JsonProperty("last_updated")]
+        public DateTimeOffset? LastUpdated { get; set; }
+    }
 }
