@@ -96,8 +96,19 @@ namespace Emun.CoinMarketCap
             MetadataQuery request,
             CancellationToken cancellationToken);
 
-
-
+        /// <summary>
+        /// Returns the latest OHLCV (Open, High, Low, Close, Volume) market values for one or more cryptocurrencies for the current UTC day.
+        /// Since the current UTC day is still active these values are updated frequently. You can find the final calculated OHLCV values for 
+        /// the last completed UTC day along with all historic days using /cryptocurrency/ohlcv/historical.
+        /// This endpoint is available on the following API plans:
+        /// Startup, Standard, Professional, Enterprise
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<LatestOhlcvResult> GetOhlcvLatestAsync(
+            OhlcvQuery request,
+            CancellationToken cancellationToken);
     }
 
 }

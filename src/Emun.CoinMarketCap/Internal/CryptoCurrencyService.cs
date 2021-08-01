@@ -98,5 +98,20 @@ namespace Emun.CoinMarketCap.Internal
             return await Task.FromResult(IdMapResult.From(api_result));
         }
 
+        /// <inheritdoc />
+        public async Task<LatestOhlcvResult> GetOhlcvLatestAsync(
+            OhlcvQuery request,
+            CancellationToken cancellationToken) {
+
+            request.CheckArgumentIsNull(nameof(request));
+
+            var api_result = await getApiResponseAsync<Dictionary<string, LatestOhlcvData>>
+               (request, "cryptocurrency/ohlcv/latest", cancellationToken);
+
+            return await Task.FromResult(LatestOhlcvResult.From(api_result));
+        }
+
+
+
     }
 }
