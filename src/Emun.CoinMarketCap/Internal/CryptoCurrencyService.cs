@@ -70,6 +70,22 @@ namespace Emun.CoinMarketCap.Internal
             QuotesLatestQuery request,
             CancellationToken cancellationToken);
 
+        /// <summary>
+        /// Returns an interval of historic market quotes for any cryptocurrency based on time and interval parameters.
+        /// A historic quote for every "interval" period between your "time_start" and "time_end" will be returned.
+        /// If a "time_start" is not supplied, the "interval" will be applied in reverse from "time_end".
+        /// If "time_end" is not supplied, it defaults to the current time.
+        /// At each "interval" period, the historic quote that is closest in time to the requested time will be returned.
+        /// If no historic quotes are available in a given "interval" period up until the next interval period, it will be skipped.
+        /// More : https://coinmarketcap.com/api/documentation/v1/#operation/getV1CryptocurrencyQuotesHistorical
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns>Returns an interval of historic market quotes for any cryptocurrency based on time and interval parameters.</returns>
+        Task<QuotesHistoricalResult> GetQuotesHistoricalAsync(
+            QuotesHistoricalQuery request,
+            CancellationToken cancellationToken);
+
 
         /// <summary>
         /// Returns all static metadata available for one or more cryptocurrencies. 
@@ -130,13 +146,25 @@ namespace Emun.CoinMarketCap.Internal
             QuotesLatestQuery request,
             CancellationToken cancellationToken) {
 
-
             request.CheckArgumentIsNull(nameof(request));
 
             var api_result = await getApiResponseAsync<List<LatestCryptoData>>
                 (request, "cryptocurrency/quotes/latest", cancellationToken);
 
             return await Task.FromResult(ListingResult.From(api_result));
+        }
+
+        /// <inheritdoc />
+        public async Task<QuotesHistoricalResult> GetQuotesHistoricalAsync(
+            QuotesHistoricalQuery request,
+            CancellationToken cancellationToken) {
+
+            request.CheckArgumentIsNull(nameof(request));
+
+            var api_result = await getApiResponseAsync<List<QuotesHistoricalData>>
+                (request, "cryptocurrency/quotes/historical", cancellationToken);
+
+            return await Task.FromResult(QuotesHistoricalResult.From(api_result));
         }
 
         /// <inheritdoc />
@@ -166,17 +194,5 @@ namespace Emun.CoinMarketCap.Internal
             return await Task.FromResult(IdMapResult.From(api_result));
         }
 
-        /// <inheritdoc />
-        public async Task<PriceConversionResult> PriceConversionAsync(
-            PriceConversionQuery request,
-            CancellationToken cancellationToken) {
-
-            request.CheckArgumentIsNull(nameof(request));
-
-            var api_result = await getApiResponseAsync<PriceConversionData>
-                (request, "tools/price-conversion", cancellationToken);
-
-            return await Task.FromResult(PriceConversionResult.From(api_result));
-        }
     }
 }

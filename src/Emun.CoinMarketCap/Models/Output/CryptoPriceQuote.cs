@@ -36,4 +36,19 @@ namespace Emun.CoinMarketCap.Models {
         [JsonProperty("last_updated")]
         public DateTimeOffset? LastUpdated { get; set; }
     }
+
+    public class QuoteHistoricalPrice
+    {
+        [JsonProperty("price")]
+        public double Price { get; set; }
+
+        [JsonProperty("volume_24h")]
+        public long Volume24h { get; set; }
+
+        [JsonProperty("market_cap")]
+        public double MarketCap { get; set; }
+
+        [JsonProperty("timestamp")]
+        public DateTimeOffset? TimeStamp { get; set; }
+    }
 }

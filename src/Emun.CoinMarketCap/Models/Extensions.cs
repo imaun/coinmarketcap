@@ -26,6 +26,38 @@ namespace Emun.CoinMarketCap {
                 _ => "market_cap",// according to API docs the default order is 'market_cap'
             };
 
+        public static string ToStrValue(this CoinMarketCapHistoricalInterval interval)
+            => interval switch {
+                CoinMarketCapHistoricalInterval.Yearly => "yearly",
+                CoinMarketCapHistoricalInterval.Monthly => "monthly",
+                CoinMarketCapHistoricalInterval.Weekly => "weekly",
+                CoinMarketCapHistoricalInterval.Daily => "daily",
+                CoinMarketCapHistoricalInterval.Hourly => "hourly",
+                CoinMarketCapHistoricalInterval._5m => "5m",
+                CoinMarketCapHistoricalInterval._10m => "10m",
+                CoinMarketCapHistoricalInterval._15m => "15m",
+                CoinMarketCapHistoricalInterval._30m => "30m",
+                CoinMarketCapHistoricalInterval._45m => "45m",
+                CoinMarketCapHistoricalInterval._1h => "1h",
+                CoinMarketCapHistoricalInterval._2h => "2h",
+                CoinMarketCapHistoricalInterval._3h => "3h",
+                CoinMarketCapHistoricalInterval._4h => "4h",
+                CoinMarketCapHistoricalInterval._6h => "6h",
+                CoinMarketCapHistoricalInterval._12h => "12h",
+                CoinMarketCapHistoricalInterval._24h => "24h",
+                CoinMarketCapHistoricalInterval._1d => "1d",
+                CoinMarketCapHistoricalInterval._2d => "2d",
+                CoinMarketCapHistoricalInterval._3d => "3d",
+                CoinMarketCapHistoricalInterval._7d => "7d",
+                CoinMarketCapHistoricalInterval._14d => "14d",
+                CoinMarketCapHistoricalInterval._15d => "15d",
+                CoinMarketCapHistoricalInterval._30d => "30d",
+                CoinMarketCapHistoricalInterval._60d => "60d",
+                CoinMarketCapHistoricalInterval._90d => "90d",
+                CoinMarketCapHistoricalInterval._365d => "365d",
+                _=> "5m" //according to API docs the default is 5m
+            };
+
         public static string ToStrValue(this SortDir dir)
             => dir == SortDir.Asc ? "asc" : "desc";
 
