@@ -3,11 +3,21 @@ using Emun.CoinMarketCap.Models;
 
 namespace Emun.CoinMarketCap
 {
-    public class LatestOhlcvResult : ApiResponse<Dictionary<string, LatestOhlcvData>>
+    public class OhlcvLatestResult : ApiResponse<Dictionary<string, LatestOhlcvData>>
     {
 
-        public static LatestOhlcvResult From(ApiResponse<Dictionary<string, LatestOhlcvData>> model)
-            => new LatestOhlcvResult {
+        public static OhlcvLatestResult From(ApiResponse<Dictionary<string, LatestOhlcvData>> model)
+            => new OhlcvLatestResult {
+                Data = model.Data,
+                Status = model.Status
+            };
+    }
+
+    public class OhlcvHistoricalResult : ApiResponse<OhlcvHistoricalData>
+    {
+
+        public static OhlcvHistoricalResult From(ApiResponse<OhlcvHistoricalData> model)
+            => new OhlcvHistoricalResult {
                 Data = model.Data,
                 Status = model.Status
             };

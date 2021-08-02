@@ -4,6 +4,18 @@ namespace Emun.CoinMarketCap {
 
     public static class Extensions {
 
+        public static string ToStrDate(this DateTimeOffset? value)
+            => value.HasValue
+                    ? value.Value.UtcDateTime.ToString("yyyy-MM-dd")
+                    : null;
+
+        public static string ToStrValue(this OhlcvTimePeriod period)
+            => period switch {
+                OhlcvTimePeriod.Daily => "daily",
+                OhlcvTimePeriod.Hourly => "hourly",
+                _=> "daily" // according to API docs the default value is daily
+            };
+
         public static string ToStrValue(this ListingLatestOrder order) 
             => order switch {
                 ListingLatestOrder.CirculatingSupply => "circulating_supply",

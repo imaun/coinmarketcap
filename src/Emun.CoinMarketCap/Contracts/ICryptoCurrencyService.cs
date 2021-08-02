@@ -106,9 +106,30 @@ namespace Emun.CoinMarketCap
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<LatestOhlcvResult> GetOhlcvLatestAsync(
-            OhlcvQuery request,
+        Task<OhlcvLatestResult> GetOhlcvLatestAsync(
+            OhlcvLatestQuery request,
             CancellationToken cancellationToken);
+
+
+        /// <summary>
+        /// Returns historical OHLCV (Open, High, Low, Close, Volume) data along with market cap for any cryptocurrency using time interval parameters. 
+        /// Currently daily and hourly OHLCV periods are supported. Volume is only supported with daily periods at this time.
+        /// If querying for a specific OHLCV date your "time_start" should specify a timestamp of 1 interval prior as "time_start" is an exclusive time parameter (as opposed to "time_end" which is inclusive to the search).
+        /// This means that when you pass a "time_start" results will be returned for the next complete "time_period". For example, if you are querying for a daily OHLCV datapoint for 2018-11-30 your "time_start" should be "2018-11-29".
+        /// If only specifying a "count" parameter to return latest OHLCV periods, your "count" should be 1 number higher than the number of results you expect to receive. 
+        /// "Count" defines the number of "time_period" intervals queried, not the number of results to return, and this includes the currently active time period which is incomplete when working backwards from current time.For example, 
+        /// if you want the last daily OHLCV value available simply pass "count=2" to skip the incomplete active time period.
+        /// This endpoint supports requesting multiple cryptocurrencies in the same call.Please note the API response will be wrapped in an additional object in this case.
+        /// More at : https://coinmarketcap.com/api/documentation/v1/#operation/getV1CryptocurrencyOhlcvHistorical
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns>Returns historical OHLCV (Open, High, Low, Close, Volume) data along with market cap for any cryptocurrency using time interval parameters. 
+        /// Currently daily and hourly OHLCV periods are supported. Volume is only supported with daily periods at this time.</returns>
+        Task<OhlcvHistoricalResult> GetOhlcvHistoricalAsync(
+            OhlcvHistoricalQuery request,
+            CancellationToken cancellationToken);
+
     }
 
 }

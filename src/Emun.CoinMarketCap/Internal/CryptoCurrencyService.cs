@@ -5,12 +5,9 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Emun.CoinMarketCap.Internal
-{
+namespace Emun.CoinMarketCap.Internal {
 
-
-    internal class CryptoCurrencyService : CoinMarketCapBaseService, ICryptoCurrencyService
-    {
+    internal class CryptoCurrencyService : CoinMarketCapBaseService, ICryptoCurrencyService {
 
         public CryptoCurrencyService(HttpClient httpClient, string apiKey) 
             : base(httpClient, apiKey) { }
@@ -99,8 +96,8 @@ namespace Emun.CoinMarketCap.Internal
         }
 
         /// <inheritdoc />
-        public async Task<LatestOhlcvResult> GetOhlcvLatestAsync(
-            OhlcvQuery request,
+        public async Task<OhlcvLatestResult> GetOhlcvLatestAsync(
+            OhlcvLatestQuery request,
             CancellationToken cancellationToken) {
 
             request.CheckArgumentIsNull(nameof(request));
@@ -108,10 +105,21 @@ namespace Emun.CoinMarketCap.Internal
             var api_result = await getApiResponseAsync<Dictionary<string, LatestOhlcvData>>
                (request, "cryptocurrency/ohlcv/latest", cancellationToken);
 
-            return await Task.FromResult(LatestOhlcvResult.From(api_result));
+            return await Task.FromResult(OhlcvLatestResult.From(api_result));
         }
 
+        /// <inheritdoc />
+        public async Task<OhlcvHistoricalResult> GetOhlcvHistoricalAsync(
+            OhlcvHistoricalQuery request,
+            CancellationToken cancellationToken) {
 
+            request.CheckArgumentIsNull(nameof(request));
+
+            var api_result = await getApiResponseAsync<OhlcvHistoricalData>
+                (request, "", cancellationToken);
+
+            return await Task.FromResult(OhlcvHistoricalResult.From(api_result));
+        }
 
     }
 }
