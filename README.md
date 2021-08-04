@@ -39,11 +39,26 @@ public void ConfigureServices(IServiceCollection services)
 ```
 ### 5. Inject `ICoinMarketCapAPI` and use it
 ```cs
-var result = await client.CryptoCurrency.GetListingsLatestAsync(new ListingsLatestQuery {
-    Limit = 100,
-    Start = 1
-});
+using System.Threading.Tasks;
+using Emun.CoinMarketCap;
 
+namespace Sample {
+
+    public class SampleController : Controller {
+
+        private readonly ICoinMarketCapAPI _client;
+
+        public SampleController(ICoinMarketCapAPI client) {
+            _client = client ?? throw new ArgumentNullException(nameof(client));
+
+            var result = await _client.CryptoCurrency.GetListingsLatestAsync(new ListingsLatestQuery {
+                Limit = 100,
+                Start = 1
+            });
+        }
+    }
+
+}
 ```
 
 
