@@ -56,7 +56,7 @@ namespace Emun.CoinMarketCap
         /// Returns the latest market quote for 1 or more cryptocurrencies. Use the "convert" option to return 
         /// market values in multiple fiat and cryptocurrency conversions in the same call.
         /// This endpoint is available on the following API plans:
-        /// Basic, Startup, Hobbyist, Standard, Professional, Enterprise
+        /// [Basic, Startup, Hobbyist, Standard, Professional, Enterprise]
         /// </summary>
         /// <param name="request">Query data to filter output result.</param>
         /// <param name="cancellationToken"></param>
@@ -87,7 +87,7 @@ namespace Emun.CoinMarketCap
         /// This information includes details like logo, description, official website URL, 
         /// social links, and links to a cryptocurrency's technical documentation.
         /// This endpoint is available on the following API plans:
-        /// Basic, Startup, Hobbyist, Standard, Professional, Enterprise
+        /// [Basic, Startup, Hobbyist, Standard, Professional, Enterprise]
         /// </summary>
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
@@ -101,7 +101,7 @@ namespace Emun.CoinMarketCap
         /// Since the current UTC day is still active these values are updated frequently. You can find the final calculated OHLCV values for 
         /// the last completed UTC day along with all historic days using /cryptocurrency/ohlcv/historical.
         /// This endpoint is available on the following API plans:
-        /// Startup, Standard, Professional, Enterprise
+        /// [Startup, Standard, Professional, Enterprise]
         /// </summary>
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
@@ -120,6 +120,8 @@ namespace Emun.CoinMarketCap
         /// "Count" defines the number of "time_period" intervals queried, not the number of results to return, and this includes the currently active time period which is incomplete when working backwards from current time.For example, 
         /// if you want the last daily OHLCV value available simply pass "count=2" to skip the incomplete active time period.
         /// This endpoint supports requesting multiple cryptocurrencies in the same call.Please note the API response will be wrapped in an additional object in this case.
+        /// This endpoint is available on the following API plans:
+        /// [Startup, Standard, Professional, Enterprise]
         /// More at : https://coinmarketcap.com/api/documentation/v1/#operation/getV1CryptocurrencyOhlcvHistorical
         /// </summary>
         /// <param name="request"></param>
