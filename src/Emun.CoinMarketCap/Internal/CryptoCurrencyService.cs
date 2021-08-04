@@ -16,7 +16,7 @@ namespace Emun.CoinMarketCap.Internal {
         /// <inheritdoc/>
         public async Task<ListingResult> GetListingsLatestAsync(
             ListingsLatestQuery request,
-            CancellationToken cancellationToken) {
+            CancellationToken cancellationToken = default) {
 
             request.CheckArgumentIsNull(nameof(request));
 
@@ -29,7 +29,7 @@ namespace Emun.CoinMarketCap.Internal {
         /// <inheritdoc/>
         public async Task<ListingResult> GetListingHistoricalAsync(
             ListingHistoricalQuery request,
-            CancellationToken cancellationToken) {
+            CancellationToken cancellationToken = default) {
 
             request.CheckArgumentIsNull(nameof(request));
 
@@ -45,7 +45,7 @@ namespace Emun.CoinMarketCap.Internal {
         /// <inheritdoc />
         public async Task<ListingResult> GetQuotesLatestAsync(
             QuotesLatestQuery request,
-            CancellationToken cancellationToken) {
+            CancellationToken cancellationToken = default) {
 
             request.CheckArgumentIsNull(nameof(request));
 
@@ -58,7 +58,7 @@ namespace Emun.CoinMarketCap.Internal {
         /// <inheritdoc />
         public async Task<QuotesHistoricalResult> GetQuotesHistoricalAsync(
             QuotesHistoricalQuery request,
-            CancellationToken cancellationToken) {
+            CancellationToken cancellationToken = default) {
 
             request.CheckArgumentIsNull(nameof(request));
 
@@ -71,7 +71,7 @@ namespace Emun.CoinMarketCap.Internal {
         /// <inheritdoc />
         public async Task<MetadataResult> GetMetadataAsync(
             MetadataQuery request,
-            CancellationToken cancellationToken) {
+            CancellationToken cancellationToken = default) {
 
             request.CheckArgumentIsNull(nameof(request));
 
@@ -85,7 +85,7 @@ namespace Emun.CoinMarketCap.Internal {
         /// <inheritdoc />
         public async Task<IdMapResult> MapAsync(
             IdMapQuery request,
-            CancellationToken cancellationToken) {
+            CancellationToken cancellationToken = default) {
 
             request.CheckArgumentIsNull(nameof(request));
 
@@ -98,7 +98,7 @@ namespace Emun.CoinMarketCap.Internal {
         /// <inheritdoc />
         public async Task<OhlcvLatestResult> GetOhlcvLatestAsync(
             OhlcvLatestQuery request,
-            CancellationToken cancellationToken) {
+            CancellationToken cancellationToken = default) {
 
             request.CheckArgumentIsNull(nameof(request));
 
@@ -111,7 +111,7 @@ namespace Emun.CoinMarketCap.Internal {
         /// <inheritdoc />
         public async Task<OhlcvHistoricalResult> GetOhlcvHistoricalAsync(
             OhlcvHistoricalQuery request,
-            CancellationToken cancellationToken) {
+            CancellationToken cancellationToken = default) {
 
             request.CheckArgumentIsNull(nameof(request));
 

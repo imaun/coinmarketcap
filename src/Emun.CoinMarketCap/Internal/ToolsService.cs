@@ -13,11 +13,10 @@ namespace Emun.CoinMarketCap.Internal {
         public ToolsService(HttpClient httpClient, string apiKey)
             : base(httpClient, apiKey) { }
 
-
         /// <inheritdoc />
         public async Task<PriceConversionResult> PriceConversionAsync(
             PriceConversionQuery request,
-            CancellationToken cancellationToken) {
+            CancellationToken cancellationToken = default) {
 
             request.CheckArgumentIsNull(nameof(request));
 

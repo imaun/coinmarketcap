@@ -1,7 +1,7 @@
 # CoinMarketCap
-CoinMarketCap API for .NET 
+#### CoinMarketCap API for .NET 
 
-This is an easy to use wrapper around the CoinMarketCap Pro API providing services for calling the following endpoints :
+This is an easy to use wrapper around the [CoinMarketCap API](https://coinmarketcap.com/api/documentation/v1/) providing services for calling the following endpoints :
 ### CryptoCurrencyService
 - `cryptocurrency/map` Returns a mapping of all cryptocurrencies to unique CoinMarketCap `id`s
 - `cryptocurrency/info` - Returns all static metadata available for one or more cryptocurrencies
@@ -15,6 +15,37 @@ This is an easy to use wrapper around the CoinMarketCap Pro API providing servic
 
 ### ToolsService
 - `tools/price-conversion` Convert an amount of one cryptocurrency or fiat currency into one or more different currencies utilizing the latest market rate for each currency.
+
+## How to use
+### 1. Clone this repo :
+```cli
+git clone https://github.com/imaun/coinmarketcap.git`
+```
+### 2. Build 
+```cli
+dotnet build
+```
+
+### 3. Get your own API Key from [here](https://pro.coinmarketcap.com/signup/)
+
+### 4. Add CoinMarketCapAPI services in startup
+```cs
+public void ConfigureServices(IServiceCollection services)
+{
+    //...
+    services.AddCoinMarketCapAPI(apiKey: "YourApiKey");
+    //...
+}
+```
+### 5. Inject `ICoinMarketCapAPI` and use it
+```cs
+var result = await client.CryptoCurrency.GetListingsLatestAsync(new ListingsLatestQuery {
+    Limit = 100,
+    Start = 1
+});
+
+```
+
 
 # Project Status :
 This project is under development and is in early stage. If you want to contribute, feel free to fork it.

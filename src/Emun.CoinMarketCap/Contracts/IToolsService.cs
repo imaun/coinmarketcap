@@ -17,6 +17,6 @@ namespace Emun.CoinMarketCap
         /// <returns></returns>
         Task<PriceConversionResult> PriceConversionAsync(
             PriceConversionQuery request,
-            CancellationToken cancellationToken);
+            CancellationToken cancellationToken = default);
     }
 }

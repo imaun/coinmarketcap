@@ -19,7 +19,7 @@ namespace Emun.CoinMarketCap
         /// <returns>Returns a mapping of all cryptocurrencies to unique CoinMarketCap ids. </returns>
         Task<IdMapResult> MapAsync(
             IdMapQuery request,
-            CancellationToken cancellationToken);
+            CancellationToken cancellationToken = default);
 
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Emun.CoinMarketCap
         /// <returns>Returns a paginated list of all active cryptocurrencies with latest market data</returns>
         Task<ListingResult> GetListingsLatestAsync(
             ListingsLatestQuery request,
-            CancellationToken cancellationToken);
+            CancellationToken cancellationToken = default);
 
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Emun.CoinMarketCap
         /// <returns>Returns a ranked and sorted list of all cryptocurrencies for a historical UTC date.</returns>
         Task<ListingResult> GetListingHistoricalAsync(
             ListingHistoricalQuery request,
-            CancellationToken cancellationToken);
+            CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Returns the latest market quote for 1 or more cryptocurrencies. Use the "convert" option to return 
@@ -63,7 +63,7 @@ namespace Emun.CoinMarketCap
         /// <returns>Returns the latest market quote for 1 or more cryptocurrencies</returns>
         Task<ListingResult> GetQuotesLatestAsync(
             QuotesLatestQuery request,
-            CancellationToken cancellationToken);
+            CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Returns an interval of historic market quotes for any cryptocurrency based on time and interval parameters.
@@ -79,7 +79,7 @@ namespace Emun.CoinMarketCap
         /// <returns>Returns an interval of historic market quotes for any cryptocurrency based on time and interval parameters.</returns>
         Task<QuotesHistoricalResult> GetQuotesHistoricalAsync(
             QuotesHistoricalQuery request,
-            CancellationToken cancellationToken);
+            CancellationToken cancellationToken = default);
 
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace Emun.CoinMarketCap
         /// <returns>Returns all static metadata available for one or more cryptocurrencies. </returns>
         Task<MetadataResult> GetMetadataAsync(
             MetadataQuery request,
-            CancellationToken cancellationToken);
+            CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Returns the latest OHLCV (Open, High, Low, Close, Volume) market values for one or more cryptocurrencies for the current UTC day.
@@ -108,8 +108,7 @@ namespace Emun.CoinMarketCap
         /// <returns></returns>
         Task<OhlcvLatestResult> GetOhlcvLatestAsync(
             OhlcvLatestQuery request,
-            CancellationToken cancellationToken);
-
+            CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Returns historical OHLCV (Open, High, Low, Close, Volume) data along with market cap for any cryptocurrency using time interval parameters. 
@@ -130,7 +129,7 @@ namespace Emun.CoinMarketCap
         /// Currently daily and hourly OHLCV periods are supported. Volume is only supported with daily periods at this time.</returns>
         Task<OhlcvHistoricalResult> GetOhlcvHistoricalAsync(
             OhlcvHistoricalQuery request,
-            CancellationToken cancellationToken);
+            CancellationToken cancellationToken = default);
 
     }
 
