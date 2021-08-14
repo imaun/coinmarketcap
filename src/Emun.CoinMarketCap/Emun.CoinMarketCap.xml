@@ -1,0 +1,803 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Emun.CoinMarketCap</name>
+    </assembly>
+    <members>
+        <member name="T:Emun.CoinMarketCap.CoinMarketCapAPI">
+            <inheritdoc/>
+        </member>
+        <member name="T:Emun.CoinMarketCap.ICoinMarketCapAPI">
+            <summary>
+            Provides CoinMarketCap API Pro v1 endpoint services.
+            According to the official docs : https://coinmarketcap.com/api/documentation/v1/
+            </summary>
+        </member>
+        <member name="M:Emun.CoinMarketCap.ICryptoCurrencyService.MapAsync(Emun.CoinMarketCap.IdMapQuery,System.Threading.CancellationToken)">
+            <summary>
+            Returns a mapping of all cryptocurrencies to unique CoinMarketCap ids. Per our Best Practices 
+            we recommend utilizing CMC ID instead of cryptocurrency symbols to securely identify cryptocurrencies with our other endpoints 
+            and in your own application logic. Each cryptocurrency returned includes typical identifiers such as name, symbol, and token_address 
+            for flexible mapping to id.
+            This endpoint is available on the following API plans:
+            [Basic, Hobbyist, Startup, Standard, Professional, Enterprise]
+            </summary>
+            <param name="request">Query data to filter data and apply paging.</param>
+            <param name="cancellationToken"></param>
+            <returns>Returns a mapping of all cryptocurrencies to unique CoinMarketCap ids. </returns>
+        </member>
+        <member name="M:Emun.CoinMarketCap.ICryptoCurrencyService.GetListingsLatestAsync(Emun.CoinMarketCap.ListingsLatestQuery,System.Threading.CancellationToken)">
+            <summary>
+            Returns a paginated list of all active cryptocurrencies with latest market data. 
+            The default "market_cap" sort returns cryptocurrency in order of CoinMarketCap's 
+            market cap rank (as outlined in our methodology) but you may configure this call 
+            to order by another market ranking field. Use the "convert" option to return market
+            values in multiple fiat and cryptocurrency conversions in the same call.
+            This endpoint is available on the following API plans:
+            [Basic, Hobbyist, Startup, Standard, Professional, Enterprise]
+            </summary>
+            <param name="request">Query data to filter output result.</param>
+            <param name="cancellationToken"></param>
+            <returns>Returns a paginated list of all active cryptocurrencies with latest market data</returns>
+        </member>
+        <member name="M:Emun.CoinMarketCap.ICryptoCurrencyService.GetListingHistoricalAsync(Emun.CoinMarketCap.ListingHistoricalQuery,System.Threading.CancellationToken)">
+            <summary>
+            This endpoint is identical in format to our /cryptocurrency/listings/latest endpoint but is used to retrieve historical daily ranking snapshots from the end of each UTC day.
+            Daily snapshots reflect market data at the end of each UTC day and may be requested as far back as 2013-04-28 (as supported by your plan's historical limits).
+            This endpoint is available on the following API plans:
+            [Standard (3 months), Professional (12 months), Enterprise (Up to 6 years)]
+            </summary>
+            <param name="request">Query data to filter output result.</param>
+            <param name="cancellationToken"></param>
+            <returns>Returns a ranked and sorted list of all cryptocurrencies for a historical UTC date.</returns>
+        </member>
+        <member name="M:Emun.CoinMarketCap.ICryptoCurrencyService.GetQuotesLatestAsync(Emun.CoinMarketCap.QuotesLatestQuery,System.Threading.CancellationToken)">
+            <summary>
+            Returns the latest market quote for 1 or more cryptocurrencies. Use the "convert" option to return 
+            market values in multiple fiat and cryptocurrency conversions in the same call.
+            This endpoint is available on the following API plans:
+            [Basic, Startup, Hobbyist, Standard, Professional, Enterprise]
+            </summary>
+            <param name="request">Query data to filter output result.</param>
+            <param name="cancellationToken"></param>
+            <returns>Returns the latest market quote for 1 or more cryptocurrencies</returns>
+        </member>
+        <member name="M:Emun.CoinMarketCap.ICryptoCurrencyService.GetQuotesHistoricalAsync(Emun.CoinMarketCap.QuotesHistoricalQuery,System.Threading.CancellationToken)">
+            <summary>
+            Returns an interval of historic market quotes for any cryptocurrency based on time and interval parameters.
+            A historic quote for every "interval" period between your "time_start" and "time_end" will be returned.
+            If a "time_start" is not supplied, the "interval" will be applied in reverse from "time_end".
+            If "time_end" is not supplied, it defaults to the current time.
+            At each "interval" period, the historic quote that is closest in time to the requested time will be returned.
+            If no historic quotes are available in a given "interval" period up until the next interval period, it will be skipped.
+            More : https://coinmarketcap.com/api/documentation/v1/#operation/getV1CryptocurrencyQuotesHistorical
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns>Returns an interval of historic market quotes for any cryptocurrency based on time and interval parameters.</returns>
+        </member>
+        <member name="M:Emun.CoinMarketCap.ICryptoCurrencyService.GetMetadataAsync(Emun.CoinMarketCap.MetadataQuery,System.Threading.CancellationToken)">
+            <summary>
+            Returns all static metadata available for one or more cryptocurrencies. 
+            This information includes details like logo, description, official website URL, 
+            social links, and links to a cryptocurrency's technical documentation.
+            This endpoint is available on the following API plans:
+            [Basic, Startup, Hobbyist, Standard, Professional, Enterprise]
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns>Returns all static metadata available for one or more cryptocurrencies. </returns>
+        </member>
+        <member name="M:Emun.CoinMarketCap.ICryptoCurrencyService.GetOhlcvLatestAsync(Emun.CoinMarketCap.OhlcvLatestQuery,System.Threading.CancellationToken)">
+            <summary>
+            Returns the latest OHLCV (Open, High, Low, Close, Volume) market values for one or more cryptocurrencies for the current UTC day.
+            Since the current UTC day is still active these values are updated frequently. You can find the final calculated OHLCV values for 
+            the last completed UTC day along with all historic days using /cryptocurrency/ohlcv/historical.
+            This endpoint is available on the following API plans:
+            [Startup, Standard, Professional, Enterprise]
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Emun.CoinMarketCap.ICryptoCurrencyService.GetOhlcvHistoricalAsync(Emun.CoinMarketCap.OhlcvHistoricalQuery,System.Threading.CancellationToken)">
+            <summary>
+            Returns historical OHLCV (Open, High, Low, Close, Volume) data along with market cap for any cryptocurrency using time interval parameters. 
+            Currently daily and hourly OHLCV periods are supported. Volume is only supported with daily periods at this time.
+            If querying for a specific OHLCV date your "time_start" should specify a timestamp of 1 interval prior as "time_start" is an exclusive time parameter (as opposed to "time_end" which is inclusive to the search).
+            This means that when you pass a "time_start" results will be returned for the next complete "time_period". For example, if you are querying for a daily OHLCV datapoint for 2018-11-30 your "time_start" should be "2018-11-29".
+            If only specifying a "count" parameter to return latest OHLCV periods, your "count" should be 1 number higher than the number of results you expect to receive. 
+            "Count" defines the number of "time_period" intervals queried, not the number of results to return, and this includes the currently active time period which is incomplete when working backwards from current time.For example, 
+            if you want the last daily OHLCV value available simply pass "count=2" to skip the incomplete active time period.
+            This endpoint supports requesting multiple cryptocurrencies in the same call.Please note the API response will be wrapped in an additional object in this case.
+            This endpoint is available on the following API plans:
+            [Startup, Standard, Professional, Enterprise]
+            More at : https://coinmarketcap.com/api/documentation/v1/#operation/getV1CryptocurrencyOhlcvHistorical
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns>Returns historical OHLCV (Open, High, Low, Close, Volume) data along with market cap for any cryptocurrency using time interval parameters. 
+            Currently daily and hourly OHLCV periods are supported. Volume is only supported with daily periods at this time.</returns>
+        </member>
+        <member name="T:Emun.CoinMarketCap.IExchangeService">
+            <summary>
+            API endpoints for cryptocurrency exchanges
+            </summary>
+        </member>
+        <member name="M:Emun.CoinMarketCap.IExchangeService.MapAsync(Emun.CoinMarketCap.ExchangeMapQuery,System.Threading.CancellationToken)">
+            <summary>
+            Returns a paginated list of all active cryptocurrency exchanges by CoinMarketCap ID. 
+            We recommend using this convenience endpoint to lookup and utilize our unique exchange id across all endpoints 
+            as typical exchange identifiers may change over time. As a convenience you may pass a comma-separated list of 
+            exchanges by slug to filter this list to only those you require or the aux parameter to slim down the payload.
+            This endpoint is available on the following API plans:
+            [Startup, Standard, Professional, Enterprise]
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Emun.CoinMarketCap.IExchangeService.ListingLatestAsync(Emun.CoinMarketCap.ExchangeListingLatestQuery,System.Threading.CancellationToken)">
+            <summary>
+            Returns a paginated list of all cryptocurrency exchanges including the latest aggregate market data for each exchange. 
+            Use the "convert" option to return market values in multiple fiat and cryptocurrency conversions in the same call.
+            This endpoint is available on the following API plans:
+            [Standard, Professional, Enterprise]
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Emun.CoinMarketCap.IFiatService">
+            <summary>
+            API endpoints for fiat currencies.
+            </summary>
+        </member>
+        <member name="M:Emun.CoinMarketCap.IFiatService.MapAsync(Emun.CoinMarketCap.FiatMapQuery,System.Threading.CancellationToken)">
+            <summary>
+            Returns a mapping of all supported fiat currencies to unique CoinMarketCap ids. 
+            Per our Best Practices we recommend utilizing CMC ID instead of currency symbols to securely identify assets 
+            with our other endpoints and in your own application logic.
+            Mapping data is updated only as needed, every 30 seconds.
+            This endpoint is available on the following API plans:
+            [Basic, Hobbyist, Startup, Standard, Professional, Enterprise]
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Emun.CoinMarketCap.IToolsService.PriceConversionAsync(Emun.CoinMarketCap.PriceConversionQuery,System.Threading.CancellationToken)">
+            <summary>
+            Convert an amount of one cryptocurrency or fiat currency into one or more different currencies utilizing the latest market rate for each currency.
+            You may optionally pass a historical timestamp as time to convert values based on historical rates (as your API plan supports).
+            This endpoint is available on the following API plans:
+            Basic, Startup, Hobbyist, Standard, Professional, Enterprise.
+            More: https://coinmarketcap.com/api/documentation/v1/#operation/getV1ToolsPriceconversion
+            </summary>
+            <param name="request"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Emun.CoinMarketCap.Internal.CryptoCurrencyService.GetListingsLatestAsync(Emun.CoinMarketCap.ListingsLatestQuery,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Emun.CoinMarketCap.Internal.CryptoCurrencyService.GetListingHistoricalAsync(Emun.CoinMarketCap.ListingHistoricalQuery,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Emun.CoinMarketCap.Internal.CryptoCurrencyService.GetQuotesLatestAsync(Emun.CoinMarketCap.QuotesLatestQuery,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Emun.CoinMarketCap.Internal.CryptoCurrencyService.GetQuotesHistoricalAsync(Emun.CoinMarketCap.QuotesHistoricalQuery,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Emun.CoinMarketCap.Internal.CryptoCurrencyService.GetMetadataAsync(Emun.CoinMarketCap.MetadataQuery,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Emun.CoinMarketCap.Internal.CryptoCurrencyService.MapAsync(Emun.CoinMarketCap.IdMapQuery,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Emun.CoinMarketCap.Internal.CryptoCurrencyService.GetOhlcvLatestAsync(Emun.CoinMarketCap.OhlcvLatestQuery,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Emun.CoinMarketCap.Internal.CryptoCurrencyService.GetOhlcvHistoricalAsync(Emun.CoinMarketCap.OhlcvHistoricalQuery,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:Emun.CoinMarketCap.Internal.ExchangeService">
+            <inheritdoc/>
+        </member>
+        <member name="M:Emun.CoinMarketCap.Internal.ExchangeService.MapAsync(Emun.CoinMarketCap.ExchangeMapQuery,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Emun.CoinMarketCap.Internal.ExchangeService.ListingLatestAsync(Emun.CoinMarketCap.ExchangeListingLatestQuery,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Emun.CoinMarketCap.Internal.FiatService.MapAsync(Emun.CoinMarketCap.FiatMapQuery,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Emun.CoinMarketCap.Internal.ToolsService.PriceConversionAsync(Emun.CoinMarketCap.PriceConversionQuery,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="P:Emun.CoinMarketCap.ExchangeListingLatestQuery.Start">
+            <summary>
+            Optionally offset the start (1-based index) of the paginated list of items to return.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ExchangeListingLatestQuery.Limit">
+            <summary>
+            Optionally specify the number of results to return. Use this parameter and the "start" parameter to determine your own pagination size.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ExchangeListingLatestQuery.Sort">
+            <summary>
+            What field to sort the list of exchanges by.
+            Valid values : "name""volume_24h""volume_24h_adjusted""exchange_score"
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ExchangeListingLatestQuery.SortDirection">
+            <summary>
+            The direction in which to order exchanges against the specified sort.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ExchangeListingLatestQuery.MarketType">
+            <summary>
+            The type of exchange markets to include in rankings. This field is deprecated. Please use "all" for accurate sorting.
+            Default : all
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ExchangeListingLatestQuery.Aux">
+            <summary>
+            Optionally specify a comma-separated list of supplemental data fields to return. 
+            Pass num_market_pairs,traffic_score,rank,exchange_score,effective_liquidity_24h,date_launched,fiats,visits 
+            to include all auxiliary fields.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ExchangeListingLatestQuery.Convert">
+            <summary>
+            Optionally calculate market quotes in up to 120 currencies at once by passing a comma-separated list of cryptocurrency or fiat currency symbols. Each additional convert option beyond the first requires an additional call credit. 
+            A list of supported fiat options can be found here: https://coinmarketcap.com/api/documentation/v1/#section/Standards-and-Conventions.
+            Each conversion is returned in its own "quote" object.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ExchangeListingLatestQuery.ConvertId">
+            <summary>
+            Optionally calculate market quotes by CoinMarketCap ID instead of symbol. 
+            This option is identical to convert outside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. 
+            This parameter cannot be used when convert is used.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ExchangeMapQuery.ListingStatus">
+            <summary>
+            Only active exchanges are returned by default. Pass inactive to get a list of exchanges that are no longer active. 
+            Pass untracked to get a list of exchanges that are registered but do not currently meet methodology requirements 
+            to have active markets tracked. You may pass one or more comma-separated values.
+            default : `active`
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ExchangeMapQuery.Slug">
+            <summary>
+            Optionally pass a comma-separated list of exchange slugs (lowercase URL friendly shorthand name with spaces replaced with dashes)
+            to return CoinMarketCap IDs for. If this option is passed, other options will be ignored.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ExchangeMapQuery.Start">
+            <summary>
+            Optionally offset the start (1-based index) of the paginated list of items to return.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ExchangeMapQuery.Limit">
+            <summary>
+            Optionally specify the number of results to return. Use this parameter and the "start" parameter to determine your own pagination size.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ExchangeMapQuery.Sort">
+            <summary>
+            What field to sort the list of exchanges by.
+            Valid values : "volume_24h", "id"
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ExchangeMapQuery.Aux">
+            <summary>
+            Default : "first_historical_data,last_historical_data,is_active" 
+            Optionally specify a comma-separated list of supplemental data fields to return. 
+            Pass first_historical_data, last_historical_data, is_active, status to include all auxiliary fields.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ExchangeMapQuery.CryptoId">
+            <summary>
+            Optionally include one fiat or cryptocurrency IDs to filter market pairs by. 
+            For example ?crypto_id=1 would only return exchanges that have BTC.
+            </summary>
+        </member>
+        <member name="T:Emun.CoinMarketCap.FiatMapQuery">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.FiatMapQuery.Start">
+            <summary>
+            Optionally offset the start (1-based index) of the paginated list of items to return. Default : 1
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.FiatMapQuery.Limit">
+            <summary>
+            Optionally specify the number of results to return. Use this parameter and the "start" parameter to determine your own pagination size.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.FiatMapQuery.Sort">
+            <summary>
+            What field to sort the list by.
+            Valid fields : [id, name]
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.FiatMapQuery.IncludeMetals">
+            <summary>
+            Pass true to include precious metals.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.IdMapQuery.ListingStatus">
+            <summary>
+            Only active cryptocurrencies are returned by default. Pass inactive to get a list of cryptocurrencies that are no longer active. 
+            Pass untracked to get a list of cryptocurrencies that are listed but do not yet meet methodology requirements to have tracked markets available.
+            You may pass one or more comma-separated values.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.IdMapQuery.Start">
+            <summary>
+            Optionally offset the start (1-based index) of the paginated list of items to return.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.IdMapQuery.Limit">
+            <summary>
+            Optionally specify the number of results to return. Use this parameter and the "start" parameter to determine your own pagination size.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.IdMapQuery.Sort">
+            <summary>
+            What field to sort the list of cryptocurrencies by.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.IdMapQuery.Aux">
+            <summary>
+            Default : "platform,first_historical_data,last_historical_data,is_active"
+            Optionally specify a comma-separated list of supplemental data fields to return. 
+            Pass platform,first_historical_data,last_historical_data,is_active,status to include all auxiliary fields.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ListingHistoricalQuery.date">
+            <summary>
+            Required. (Unix or ISO 8601) to reference day of snapshot.
+            The required "date" parameter can be passed as a Unix timestamp or ISO 8601 date but only the date portion of the timestamp will be referenced.
+            It is recommended to send an ISO date format like "2019-10-10" without time.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ListingHistoricalQuery.Start">
+            <summary>
+            Optionally offset the start (1-based index) of the paginated list of items to return.
+            Default = 1. Must be >= 1
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ListingHistoricalQuery.Limit">
+            <summary>
+            Optionally specify the number of results to return. Use this parameter and the "start" parameter to determine your own pagination size.
+            Default = 100; Range = 1...5000
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ListingHistoricalQuery.Convert">
+            <summary>
+            Optionally calculate market quotes in up to 120 currencies at once by passing a comma-separated list of cryptocurrency or 
+            fiat currency symbols. Each additional convert option beyond the first requires an additional call credit. 
+            A list of supported fiat options can be found here. Each conversion is returned in its own "quote" object.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ListingHistoricalQuery.ConvertId">
+            <summary>
+            Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical to convert outside of ID format.
+            Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used when convert is used.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ListingHistoricalQuery.SortBy">
+            <summary>
+            What field to sort the list of cryptocurrencies by.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ListingHistoricalQuery.CryptocurrencyType">
+            <summary>
+            The type of cryptocurrency to include. Default is 'all'
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ListingHistoricalQuery.Aux">
+            <summary>
+            Optionally specify a comma-separated list of supplemental data fields to return. 
+            Pass platform,tags,date_added,circulating_supply,total_supply,max_supply,cmc_rank,num_market_pairs to include all auxiliary fields.
+            Default : "platform,tags,date_added,circulating_supply,total_supply,max_supply,cmc_rank,num_market_pairs"
+            </summary>
+        </member>
+        <member name="T:Emun.CoinMarketCap.ListingsLatestQuery">
+            <summary>
+            Returns a paginated list of all active cryptocurrencies with latest market data. The default "market_cap" sort returns cryptocurrency 
+            in order of CoinMarketCap's market cap rank (as outlined in our methodology) but you may configure this call to order by another market 
+            ranking field. Use the "convert" option to return market values in multiple fiat and cryptocurrency conversions in the same call.
+            See: <seealso cref="!:https://pro.coinmarketcap.com/api/v1#operation/getV1CryptocurrencyListingsLatest"/> 
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ListingsLatestQuery.Start">
+            <summary>
+            Optionally offset the start (1-based index) of the paginated list of items to return.
+            Default = 1; Must be >= 1
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ListingsLatestQuery.Limit">
+            <summary>
+            Optionally specify the number of results to return. Use this parameter and the "start" parameter to determine your own pagination size.
+            Default = 100; Range = 1...5000
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ListingsLatestQuery.MinimumPrice">
+            <summary>
+            Optionally specify a threshold of minimum USD price to filter results by.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ListingsLatestQuery.MaximumPrice">
+            <summary>
+            Optionally specify a threshold of maximum USD price to filter results by.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ListingsLatestQuery.MinimumMarketCap">
+            <summary>
+            Optionally specify a threshold of minimum market cap to filter results by.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ListingsLatestQuery.Minimum24hVolume">
+            <summary>
+            Optionally specify a threshold of minimum 24 hour USD volume to filter results by.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ListingsLatestQuery.Maximum24hVolume">
+            <summary>
+            Optionally specify a threshold of maximum 24 hour USD volume to filter results by.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ListingsLatestQuery.MinimumCirculatingSupply">
+            <summary>
+            Optionally specify a threshold of minimum circulating supply to filter results by.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ListingsLatestQuery.MaximumCirculatingSupply">
+            <summary>
+            Optionally specify a threshold of maximum circulating supply to filter results by.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ListingsLatestQuery.MinimumPercentChange24h">
+            <summary>
+            Optionally specify a threshold of minimum 24 hour percent change to filter results by.
+            >=-100
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ListingsLatestQuery.MaximumPercentChange24h">
+            <summary>
+            Optionally specify a threshold of maximum 24 hour percent change to filter results by.
+            >=-100
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ListingsLatestQuery.Convert">
+            <summary>
+            Optionally calculate market quotes in up to 120 currencies at once by passing a comma-separated list of cryptocurrency or 
+            fiat currency symbols. Each additional convert option beyond the first requires an additional call credit. 
+            A list of supported fiat options can be found here. Each conversion is returned in its own "quote" object.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ListingsLatestQuery.ConvertId">
+            <summary>
+            Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical to convert outside of ID format.
+            Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used when convert is used.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ListingsLatestQuery.SortBy">
+            <summary>
+            What field to sort the list of cryptocurrencies by.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ListingsLatestQuery.SortDirection">
+            <summary>
+            The direction in which to order cryptocurrencies against the specified sort.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ListingsLatestQuery.CryptocurrencyType">
+            <summary>
+            The type of cryptocurrency to include. Default is 'all'
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.ListingsLatestQuery.Tag">
+            <summary>
+            The tag of cryptocurrency to include.
+            Default is 'all'
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.MetadataQuery.Id">
+            <summary>
+            One or more comma-separated CoinMarketCap cryptocurrency IDs.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.MetadataQuery.Slug">
+            <summary>
+            Alternatively pass a comma-separated list of cryptocurrency slugs. Example: "bitcoin,ethereum"
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.MetadataQuery.Symbol">
+            <summary>
+            Alternatively pass one or more comma-separated cryptocurrency symbols. 
+            Example: "BTC,ETH". At least one "id" or "slug" or "symbol" is required for this request.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.MetadataQuery.Aux">
+            <summary>
+            "urls,logo,description,tags,platform,date_added,notice"
+            Optionally specify a comma-separated list of supplemental data fields to return. 
+            Pass urls, logo, description, tags, platform, date_added, notice, status to include all auxiliary fields.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.OhlcvLatestQuery.Id">
+            <summary>
+            One or more comma-separated cryptocurrency CoinMarketCap IDs. Example: 1,2
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.OhlcvLatestQuery.Symbol">
+            <summary>
+            Alternatively pass one or more comma-separated cryptocurrency symbols. Example: "BTC,ETH". 
+            At least one "id" or "slug" or "symbol" is required for this request.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.OhlcvLatestQuery.Convert">
+            <summary>
+            Optionally calculate market quotes in up to 120 currencies at once by passing a comma-separated 
+            list of cryptocurrency or fiat currency symbols. Each additional convert option beyond the first 
+            requires an additional call credit. A list of supported fiat options can be found here. 
+            Each conversion is returned in its own "quote" object.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.OhlcvLatestQuery.ConvertId">
+            <summary>
+            Optionally calculate market quotes by CoinMarketCap ID instead of symbol. 
+            This option is identical to convert outside of ID format.
+            Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter 
+            cannot be used when convert is used.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.OhlcvLatestQuery.SkipInvalid">
+            <summary>
+            Pass true to relax request validation rules. When requesting records on multiple cryptocurrencies an error 
+            is returned if no match is found for 1 or more requested cryptocurrencies. 
+            If set to true, invalid lookups will be skipped allowing valid cryptocurrencies to still be returned.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.OhlcvHistoricalQuery.Id">
+            <summary>
+            One or more comma-separated cryptocurrency CoinMarketCap IDs. Example: 1,2
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.OhlcvHistoricalQuery.Slug">
+            <summary>
+            Alternatively pass a comma-separated list of cryptocurrency slugs. Example: "bitcoin,ethereum"
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.OhlcvHistoricalQuery.Symbol">
+            <summary>
+            Alternatively pass one or more comma-separated cryptocurrency symbols. Example: "BTC,ETH". 
+            At least one "id" or "slug" or "symbol" is required for this request.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.OhlcvHistoricalQuery.TimePeriod">
+            <summary>
+            Time period to return OHLCV data for. The default is "daily". See the main endpoint description for details.
+            Default is : daily
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.OhlcvHistoricalQuery.TimeStart">
+             <summary>
+            Timestamp (Unix or ISO 8601) to start returning OHLCV time periods for. 
+            Only the date portion of the timestamp is used for daily OHLCV so it's recommended to send an ISO date format like "2018-09-19" without time.
+             </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.OhlcvHistoricalQuery.TimeEnd">
+            <summary>
+            Timestamp (Unix or ISO 8601) to stop returning OHLCV time periods for (inclusive). Optional, if not passed we'll default to the current time. 
+            Only the date portion of the timestamp is used for daily OHLCV so it's recommended to send an ISO date format like "2018-09-19" without time.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.OhlcvHistoricalQuery.Count">
+            <summary>
+            Optionally limit the number of time periods to return results for. The default is 10 items. The current query limit is 10000 items.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.OhlcvHistoricalQuery.Interval">
+            <summary>
+            Optionally adjust the interval that "time_period" is sampled. See main endpoint description for available options.
+            Default is : daily
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.OhlcvHistoricalQuery.Convert">
+            <summary>
+            By default market quotes are returned in USD. Optionally calculate market quotes in up to 3 fiat currencies or cryptocurrencies.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.OhlcvHistoricalQuery.ConvertId">
+            <summary>
+            Optionally calculate market quotes by CoinMarketCap ID instead of symbol. 
+            This option is identical to convert outside of ID format.
+            Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter 
+            cannot be used when convert is used.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.OhlcvHistoricalQuery.SkipInvalid">
+            <summary>
+            Pass true to relax request validation rules. When requesting records on multiple cryptocurrencies an error 
+            is returned if no match is found for 1 or more requested cryptocurrencies. 
+            If set to true, invalid lookups will be skipped allowing valid cryptocurrencies to still be returned.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.PriceConversionQuery.Amount">
+            <summary>
+            An amount of currency to convert. Example: 10.43
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.PriceConversionQuery.Id">
+            <summary>
+            The CoinMarketCap currency ID of the base cryptocurrency or fiat to convert from. Example: "1"
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.PriceConversionQuery.Symbol">
+            <summary>
+            Alternatively the currency symbol of the base cryptocurrency or fiat to convert from. Example: "BTC". One "id" or "symbol" is required.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.PriceConversionQuery.Time">
+            <summary>
+            Optional timestamp (Unix or ISO 8601) to reference historical pricing during conversion.
+            If not passed, the current time will be used.
+            If passed, we'll reference the closest historic values available for this conversion.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.PriceConversionQuery.Convert">
+            <summary>
+            Pass up to 120 comma-separated fiat or cryptocurrency symbols to convert the source amount to.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.PriceConversionQuery.ConvertId">
+            <summary>
+            Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical to convert outside of ID format.
+            Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used when convert is used.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.QuotesHistoricalQuery.Id">
+            <summary>
+            One or more comma-separated cryptocurrency CoinMarketCap IDs. Example: 1,2
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.QuotesHistoricalQuery.Symbol">
+            <summary>
+            Alternatively pass one or more comma-separated cryptocurrency symbols. Example: "BTC,ETH". 
+            At least one "id" or "slug" or "symbol" is required for this request.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.QuotesHistoricalQuery.TimeStart">
+            <summary>
+            Timestamp (Unix or ISO 8601) to start returning quotes for. Optional, 
+            if not passed, we'll return quotes calculated in reverse from "time_end".
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.QuotesHistoricalQuery.TimeEnd">
+            <summary>
+            Timestamp (Unix or ISO 8601) to stop returning quotes for (inclusive). Optional, 
+            if not passed, we'll default to the current time. If no "time_start" is passed, 
+            we return quotes in reverse order starting from this time.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.QuotesHistoricalQuery.Count">
+            <summary>
+            The number of interval periods to return results for. 
+            Optional, required if both "time_start" and "time_end" aren't supplied.
+            The default is 10 items. The current query limit is 10000.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.QuotesHistoricalQuery.Interval">
+             <summary>
+             Interval Options
+            There are 2 types of time interval formats that may be used for "interval".
+             The first are calendar year and time constants in UTC time:
+             "hourly" - Get the first quote available at the beginning of each calendar hour.
+             "daily" - Get the first quote available at the beginning of each calendar day.
+             "weekly" - Get the first quote available at the beginning of each calendar week.
+             "monthly" - Get the first quote available at the beginning of each calendar month.
+             "yearly" - Get the first quote available at the beginning of each calendar year.
+             The second are relative time intervals.
+             "m": Get the first quote available every "m" minutes (60 second intervals). Supported minutes are: "5m", "10m", "15m", "30m", "45m".
+             "h": Get the first quote available every "h" hours(3600 second intervals). Supported hour intervals are: "1h", "2h", "3h", "4h", "6h", "12h".
+             "d": Get the first quote available every "d" days(86400 second intervals). Supported day intervals are: "1d", "2d", "3d", "7d", "14d", "15d", "30d", "60d", "90d", "365d".
+             </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.QuotesHistoricalQuery.Convert">
+            <summary>
+            Optionally calculate market quotes in up to 120 currencies at once by passing a comma-separated 
+            list of cryptocurrency or fiat currency symbols. Each additional convert option beyond the first 
+            requires an additional call credit. A list of supported fiat options can be found here. 
+            Each conversion is returned in its own "quote" object.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.QuotesHistoricalQuery.ConvertId">
+            <summary>
+            Optionally calculate market quotes by CoinMarketCap ID instead of symbol. 
+            This option is identical to convert outside of ID format.
+            Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter 
+            cannot be used when convert is used.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.QuotesHistoricalQuery.Aux">
+            <summary>
+            Default : "num_market_pairs,cmc_rank,date_added,tags,platform,max_supply,circulating_supply,
+            total_supply,is_active,is_fiat"
+            Optionally specify a comma-separated list of supplemental data fields to return. 
+            Pass num_market_pairs, cmc_rank, date_added, tags, platform, max_supply, circulating_supply, 
+            total_supply, market_cap_by_total_supply, volume_24h_reported, volume_7d, volume_7d_reported, 
+            volume_30d, volume_30d_reported, is_active, is_fiat 
+            to include all auxiliary fields.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.QuotesHistoricalQuery.SkipInvalid">
+            <summary>
+            Pass true to relax request validation rules. When requesting records on multiple cryptocurrencies an error 
+            is returned if no match is found for 1 or more requested cryptocurrencies. 
+            If set to true, invalid lookups will be skipped allowing valid cryptocurrencies to still be returned.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.QuotesLatestQuery.Id">
+            <summary>
+            One or more comma-separated cryptocurrency CoinMarketCap IDs. Example: 1,2
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.QuotesLatestQuery.Slug">
+            <summary>
+            Alternatively pass a comma-separated list of cryptocurrency slugs. Example: "bitcoin,ethereum"
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.QuotesLatestQuery.Symbol">
+            <summary>
+            Alternatively pass one or more comma-separated cryptocurrency symbols. Example: "BTC,ETH". 
+            At least one "id" or "slug" or "symbol" is required for this request.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.QuotesLatestQuery.Convert">
+            <summary>
+            Optionally calculate market quotes in up to 120 currencies at once by passing a comma-separated 
+            list of cryptocurrency or fiat currency symbols. Each additional convert option beyond the first 
+            requires an additional call credit. A list of supported fiat options can be found here. 
+            Each conversion is returned in its own "quote" object.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.QuotesLatestQuery.ConvertId">
+            <summary>
+            Optionally calculate market quotes by CoinMarketCap ID instead of symbol. 
+            This option is identical to convert outside of ID format.
+            Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter 
+            cannot be used when convert is used.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.QuotesLatestQuery.Aux">
+            <summary>
+            Default : "num_market_pairs,cmc_rank,date_added,tags,platform,max_supply,circulating_supply,
+            total_supply,is_active,is_fiat"
+            Optionally specify a comma-separated list of supplemental data fields to return. 
+            Pass num_market_pairs, cmc_rank, date_added, tags, platform, max_supply, circulating_supply, 
+            total_supply, market_cap_by_total_supply, volume_24h_reported, volume_7d, volume_7d_reported, 
+            volume_30d, volume_30d_reported, is_active, is_fiat 
+            to include all auxiliary fields.
+            </summary>
+        </member>
+        <member name="P:Emun.CoinMarketCap.QuotesLatestQuery.SkipInvalid">
+            <summary>
+            Pass true to relax request validation rules. When requesting records on multiple cryptocurrencies an error 
+            is returned if no match is found for 1 or more requested cryptocurrencies. 
+            If set to true, invalid lookups will be skipped allowing valid cryptocurrencies to still be returned.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -7,10 +7,9 @@ using Emun.CoinMarketCap.Models;
 namespace Emun.CoinMarketCap
 {
     /// <summary>
-    /// 
+    /// API endpoints for cryptocurrency exchanges
     /// </summary>
-    public interface IExchangeService
-    {
+    public interface IExchangeService {
 
         /// <summary>
         /// Returns a paginated list of all active cryptocurrency exchanges by CoinMarketCap ID. 
@@ -25,7 +24,19 @@ namespace Emun.CoinMarketCap
         /// <returns></returns>
         Task<ExchangeMapResult> MapAsync(
             ExchangeMapQuery request,
-            CancellationToken cancellationToken);
-        
+            CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Returns a paginated list of all cryptocurrency exchanges including the latest aggregate market data for each exchange. 
+        /// Use the "convert" option to return market values in multiple fiat and cryptocurrency conversions in the same call.
+        /// This endpoint is available on the following API plans:
+        /// [Standard, Professional, Enterprise]
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<ExchangeListingResult> ListingLatestAsync(
+            ExchangeListingLatestQuery request,
+            CancellationToken cancellationToken = default);
     }
 }

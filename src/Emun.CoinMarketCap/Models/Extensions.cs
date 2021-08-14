@@ -2,7 +2,7 @@
 
 namespace Emun.CoinMarketCap {
 
-    public static class Extensions {
+    internal static class Extensions {
 
         public static string ToStrDate(this DateTimeOffset? value)
             => value.HasValue
@@ -72,6 +72,14 @@ namespace Emun.CoinMarketCap {
 
         public static string ToStrValue(this SortDir dir)
             => dir == SortDir.Asc ? "asc" : "desc";
+
+        public static string ToStrValue(this ExchangeMarketType marketType)
+            => marketType switch {
+                ExchangeMarketType.All => "all",
+                ExchangeMarketType.Fees => "fees",
+                ExchangeMarketType.NoFees => "nofees",
+                _=> "all"
+            };
 
         public static string ToStrValue(this CryptoType cryptoType) 
             => cryptoType switch {

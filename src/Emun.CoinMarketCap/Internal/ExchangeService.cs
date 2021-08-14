@@ -1,10 +1,8 @@
-﻿using Emun.CoinMarketCap.Models;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
+﻿using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using Emun.CoinMarketCap.Models;
 
 namespace Emun.CoinMarketCap.Internal {
 
@@ -18,7 +16,7 @@ namespace Emun.CoinMarketCap.Internal {
         /// <inheritdoc/>
         public async Task<ExchangeMapResult> MapAsync(
             ExchangeMapQuery request, 
-            CancellationToken cancellationToken) {
+            CancellationToken cancellationToken = default) {
 
             request.CheckArgumentIsNull(nameof(request));
 
@@ -27,5 +25,20 @@ namespace Emun.CoinMarketCap.Internal {
 
             return ExchangeMapResult.From(api_result);
         }
+
+        /// <inheritdoc/>
+        public async Task<ExchangeListingResult> ListingLatestAsync(
+            ExchangeListingLatestQuery request, 
+            CancellationToken cancellationToken = default) {
+
+            request.CheckArgumentIsNull(nameof(request));
+
+            var api_result = await getApiResponseAsync<List<ExchangeLatestData>>
+                (request, "exchange/listings/latest", cancellationToken);
+
+            return ExchangeListingResult.From(api_result);
+        }
+
+
     }
 }
