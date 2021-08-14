@@ -39,6 +39,18 @@ namespace Emun.CoinMarketCap.Internal {
             return ExchangeListingResult.From(api_result);
         }
 
+        /// <inheritdoc/>
+        public async Task<ExchangeMetadataResult> GetInfoAsync(
+            ExchangeMetadataQuery request,
+            CancellationToken cancellationToken = default) {
+
+            request.CheckArgumentIsNull(nameof(request));
+
+            var api_result = await getApiResponseAsync<Dictionary<string, List<ExchangeMetadata>>>
+                (request, "exchange/info", cancellationToken);
+
+            return ExchangeMetadataResult.From(api_result);
+        }
 
     }
 }

@@ -69,7 +69,7 @@ namespace Emun.CoinMarketCap.Internal {
         }
 
         /// <inheritdoc />
-        public async Task<MetadataResult> GetMetadataAsync(
+        public async Task<MetadataResult> GetInfoAsync(
             MetadataQuery request,
             CancellationToken cancellationToken = default) {
 

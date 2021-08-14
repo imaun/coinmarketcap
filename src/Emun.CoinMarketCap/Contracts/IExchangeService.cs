@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using Emun.CoinMarketCap.Models;
 
 namespace Emun.CoinMarketCap
@@ -38,5 +37,17 @@ namespace Emun.CoinMarketCap
         Task<ExchangeListingResult> ListingLatestAsync(
             ExchangeListingLatestQuery request,
             CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Returns all static metadata for one or more exchanges. 
+        /// This information includes details like launch date, logo, official website URL, social links, and market fee documentation URL.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<ExchangeMetadataResult> GetInfoAsync(
+            ExchangeMetadataQuery request,
+            CancellationToken cancellationToken = default);
+
     }
 }

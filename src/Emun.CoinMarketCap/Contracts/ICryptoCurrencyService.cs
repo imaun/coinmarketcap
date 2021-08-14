@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 
 namespace Emun.CoinMarketCap
 {
+    /// <summary>
+    /// API endpoints for cryptocurrencies.
+    /// </summary>
     public interface ICryptoCurrencyService
     {
 
@@ -92,7 +95,7 @@ namespace Emun.CoinMarketCap
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>Returns all static metadata available for one or more cryptocurrencies. </returns>
-        Task<MetadataResult> GetMetadataAsync(
+        Task<MetadataResult> GetInfoAsync(
             MetadataQuery request,
             CancellationToken cancellationToken = default);
 

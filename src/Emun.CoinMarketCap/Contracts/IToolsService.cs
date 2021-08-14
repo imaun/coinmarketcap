@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 
 namespace Emun.CoinMarketCap
 {
+    /// <summary>
+    /// API endpoints for convenience utilities.
+    /// </summary>
     public interface IToolsService
     {
         /// <summary>
