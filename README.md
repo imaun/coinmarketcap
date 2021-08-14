@@ -16,10 +16,13 @@ This is an easy to use wrapper around the [CoinMarketCap API](https://coinmarket
 ### ToolsService
 - `tools/price-conversion` Convert an amount of one cryptocurrency or fiat currency into one or more different currencies utilizing the latest market rate for each currency.
 
+### FiatService
+- `fiat/map` API endpoints for fiat currencies. Returns a mapping of all supported fiat currencies to unique CoinMarketCap ids.
+
 ## How to use
 ### 1. Clone this repo :
 ```cli
-git clone https://github.com/imaun/coinmarketcap.git`
+git clone https://github.com/imaun/coinmarketcap.git
 ```
 ### 2. Build 
 ```cli

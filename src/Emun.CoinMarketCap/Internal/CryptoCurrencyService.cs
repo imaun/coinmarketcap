@@ -1,9 +1,9 @@
-﻿using Emun.CoinMarketCap.Models;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using Emun.CoinMarketCap.Models;
 
 namespace Emun.CoinMarketCap.Internal {
 

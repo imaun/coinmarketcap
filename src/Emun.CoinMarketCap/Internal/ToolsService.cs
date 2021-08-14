@@ -1,12 +1,10 @@
-﻿using Emun.CoinMarketCap.Models;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
+﻿using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using Emun.CoinMarketCap.Models;
 
-namespace Emun.CoinMarketCap.Internal {
+namespace Emun.CoinMarketCap.Internal
+{
 
     internal class ToolsService : CoinMarketCapBaseService, IToolsService {
 
