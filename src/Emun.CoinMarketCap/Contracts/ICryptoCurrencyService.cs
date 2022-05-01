@@ -134,6 +134,8 @@ namespace Emun.CoinMarketCap
             OhlcvHistoricalQuery request,
             CancellationToken cancellationToken = default);
 
+
+        
     }
 
 }
