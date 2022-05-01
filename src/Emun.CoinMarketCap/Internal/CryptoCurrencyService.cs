@@ -13,6 +13,8 @@ namespace Emun.CoinMarketCap.Internal {
             : base(httpClient, apiKey) { }
 
 
+        const string _urlPrefix = "cryptocurrency";
+
         /// <inheritdoc/>
         public async Task<ListingResult> GetListingsLatestAsync(
             ListingsLatestQuery request,
@@ -21,7 +23,7 @@ namespace Emun.CoinMarketCap.Internal {
             request.CheckArgumentIsNull(nameof(request));
 
             var api_result = await getApiResponseAsync<List<LatestCryptoData>>
-                (request, "cryptocurrency/listings/latest", cancellationToken);
+                (request, $"{_urlPrefix}/listings/latest", cancellationToken);
 
             return await Task.FromResult(ListingResult.From(api_result));
         }
@@ -37,7 +39,7 @@ namespace Emun.CoinMarketCap.Internal {
                 throw new ArgumentNullException("date");
 
             var api_result = await base.getApiResponseAsync<List<LatestCryptoData>>
-                (request, "cryptocurrency/listings/historical", cancellationToken);
+                (request, $"{_urlPrefix}/listings/historical", cancellationToken);
 
             return await Task.FromResult(ListingResult.From(api_result));
         }
@@ -50,7 +52,7 @@ namespace Emun.CoinMarketCap.Internal {
             request.CheckArgumentIsNull(nameof(request));
 
             var api_result = await getApiResponseAsync<List<LatestCryptoData>>
-                (request, "cryptocurrency/quotes/latest", cancellationToken);
+                (request, $"{_urlPrefix}/quotes/latest", cancellationToken);
 
             return await Task.FromResult(ListingResult.From(api_result));
         }
@@ -63,7 +65,7 @@ namespace Emun.CoinMarketCap.Internal {
             request.CheckArgumentIsNull(nameof(request));
 
             var api_result = await getApiResponseAsync<List<QuotesHistoricalData>>
-                (request, "cryptocurrency/quotes/historical", cancellationToken);
+                (request, $"{_urlPrefix}/quotes/historical", cancellationToken);
 
             return await Task.FromResult(QuotesHistoricalResult.From(api_result));
         }
@@ -77,7 +79,7 @@ namespace Emun.CoinMarketCap.Internal {
 
             var api_result = await getApiResponseAsync
                 <List<Dictionary<string, CryptoCurrencyData>>>
-                    (request, "cryptocurrency/info", cancellationToken);
+                    (request, $"{_urlPrefix}/info", cancellationToken);
 
             return await Task.FromResult(MetadataResult.From(api_result));
         }
@@ -90,7 +92,7 @@ namespace Emun.CoinMarketCap.Internal {
             request.CheckArgumentIsNull(nameof(request));
 
             var api_result = await getApiResponseAsync<List<CryptoCurrencyIdMapData>>
-                (request, "cryptocurrency/map", cancellationToken);
+                (request, $"{_urlPrefix}/map", cancellationToken);
 
             return await Task.FromResult(IdMapResult.From(api_result));
         }
@@ -103,7 +105,7 @@ namespace Emun.CoinMarketCap.Internal {
             request.CheckArgumentIsNull(nameof(request));
 
             var api_result = await getApiResponseAsync<Dictionary<string, LatestOhlcvData>>
-               (request, "cryptocurrency/ohlcv/latest", cancellationToken);
+               (request, $"{_urlPrefix}/ohlcv/latest", cancellationToken);
 
             return await Task.FromResult(OhlcvLatestResult.From(api_result));
         }
@@ -116,9 +118,20 @@ namespace Emun.CoinMarketCap.Internal {
             request.CheckArgumentIsNull(nameof(request));
 
             var api_result = await getApiResponseAsync<OhlcvHistoricalData>
-                (request, "", cancellationToken);
+                (request, $"{_urlPrefix}/ohlcv/historical", cancellationToken);
 
             return await Task.FromResult(OhlcvHistoricalResult.From(api_result));
+        }
+
+        /// <inheritdoc />
+        public async Task<AirdropResult> GetAirdropAsync(string id, CancellationToken cancellationToken = default) {
+            if(string.IsNullOrWhiteSpace(id))
+                throw new ArgumentNullException(nameof(id));
+
+            var api_result = await getApiResponseAsync<AirdropData>
+                (id, $"{_urlPrefix}/airdrop", cancellationToken);
+
+            return await Task.FromResult(AirdropResult.From(api_result));
         }
 
     }

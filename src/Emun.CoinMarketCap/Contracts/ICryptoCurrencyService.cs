@@ -134,7 +134,16 @@ namespace Emun.CoinMarketCap
             OhlcvHistoricalQuery request,
             CancellationToken cancellationToken = default);
 
-
+        /// <summary>
+        /// Returns information about a single airdrop available on CoinMarketCap. Includes the cryptocurrency metadata.
+        /// This endpoint is available on the following API plans:
+        /// [Hobbyist, Startup, Standard, Professional, Enterprise]
+        /// CMC free airdrops page coinmarketcap.com/airdrop/
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<AirdropResult> GetAirdropAsync(string id, CancellationToken cancellationToken = default);
         
     }
 
