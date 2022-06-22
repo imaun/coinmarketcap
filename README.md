@@ -64,6 +64,3 @@ namespace Sample {
 }
 ```
 
-
-# Project Status :
-This project is under development and is in early stage but supports above endpoints. If you want to contribute, feel free to fork it, add missing endpoints and send pull request!
