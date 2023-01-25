@@ -1,5 +1,6 @@
 ﻿using System;
-namespace Emun.CoinMarketCap
+
+namespace ImanN.CoinMarketCap
 {
     public static class HelperExtensions
     {

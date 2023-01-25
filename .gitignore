@@ -352,3 +352,7 @@ MigrationBackup/
 
 # Custome folders
 samples/
+
+.DS_Store
+.idea
+

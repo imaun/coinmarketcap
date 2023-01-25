@@ -1,14 +1,29 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Emun.CoinMarketCap</RootNamespace>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <RootNamespace>ImanN.CoinMarketCap</RootNamespace>
+    <Nullable>enable</Nullable>
+    <AssemblyName>ImanN.CoinMarketCapAPI</AssemblyName>
+    <LangVersion>10</LangVersion>
+    <PackageId>ImanN.CoinMarketCap</PackageId>
+    <Title>CoinMarketCap API client for .NET</Title>
+    <Description>
+      This is an easy to use wrapper around the CoinMarketCap API providing services for calling almost every endpoints
+      in CoinMarketCap api v1.
+    </Description>
+    <Copyright>(c) 2022 Iman Nemati</Copyright>
+    <PackageProjectUrl>https://github.com/imaun/coinmarketcap</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/imaun/coinmarketcap/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/imaun/coinmarketcap</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>coinmarketcap, crypto, bitcoin, cryptocurrency</PackageTags>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>10.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>E:\Projects\github\coinmarketcap\src\Emun.CoinMarketCap\Emun.CoinMarketCap.xml</DocumentationFile>
     <Optimize>true</Optimize>
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>

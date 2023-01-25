@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace Emun.CoinMarketCap.Models
+namespace ImanN.CoinMarketCap.Models
 {
     public class LatestOhlcvData
     {

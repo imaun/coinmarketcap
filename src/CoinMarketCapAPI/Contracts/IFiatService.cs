@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace Emun.CoinMarketCap {
+namespace ImanN.CoinMarketCap {
 
     /// <summary>
     /// API endpoints for fiat currencies.

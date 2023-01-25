@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Emun.CoinMarketCap.Models;
+﻿using System.Collections.Generic;
+using ImanN.CoinMarketCap.Models;
 
-namespace Emun.CoinMarketCap {
+namespace ImanN.CoinMarketCap {
 
     public class FiatMapResult : ApiResponse<List<FiatMapData>>  {
 

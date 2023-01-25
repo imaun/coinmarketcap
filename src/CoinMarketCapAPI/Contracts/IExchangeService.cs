@@ -1,9 +1,8 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
-using Emun.CoinMarketCap.Models;
+using ImanN.CoinMarketCap.Models;
 
-namespace Emun.CoinMarketCap
+namespace ImanN.CoinMarketCap
 {
     /// <summary>
     /// API endpoints for cryptocurrency exchanges

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Emun.CoinMarketCap {
+namespace ImanN.CoinMarketCap {
 
     internal static class Extensions {
 

@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using System.Collections.Generic;
-
-namespace Emun.CoinMarketCap {
+﻿namespace ImanN.CoinMarketCap {
 
     public enum CoinMarketCapError {
         API_KEY_INVALID = 1001,

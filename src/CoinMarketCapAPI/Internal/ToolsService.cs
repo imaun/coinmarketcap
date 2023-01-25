@@ -1,9 +1,9 @@
 ﻿using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Emun.CoinMarketCap.Models;
+using ImanN.CoinMarketCap.Models;
 
-namespace Emun.CoinMarketCap.Internal
+namespace ImanN.CoinMarketCap.Internal
 {
 
     internal class ToolsService : CoinMarketCapBaseService, IToolsService {

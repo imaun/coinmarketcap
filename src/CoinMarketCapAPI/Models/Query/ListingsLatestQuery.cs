@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Emun.CoinMarketCap {
+namespace ImanN.CoinMarketCap {
 
     /// <summary>
     /// Returns a paginated list of all active cryptocurrencies with latest market data. The default "market_cap" sort returns cryptocurrency 

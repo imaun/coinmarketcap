@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Emun.CoinMarketCap {
+namespace ImanN.CoinMarketCap {
 
     public class QuotesLatestQuery {
 

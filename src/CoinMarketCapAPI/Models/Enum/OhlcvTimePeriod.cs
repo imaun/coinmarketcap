@@ -1,4 +1,4 @@
-﻿namespace Emun.CoinMarketCap
+﻿namespace ImanN.CoinMarketCap
 {
     public enum OhlcvTimePeriod
     {

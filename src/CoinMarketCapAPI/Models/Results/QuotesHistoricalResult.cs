@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Emun.CoinMarketCap.Models;
+using ImanN.CoinMarketCap.Models;
 
-namespace Emun.CoinMarketCap
+namespace ImanN.CoinMarketCap
 {
     public class QuotesHistoricalResult : ApiResponse<List<QuotesHistoricalData>>
     {

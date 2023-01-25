@@ -1,16 +1,7 @@
-﻿using System;
-using System.Net;
-using System.Linq;
-using System.Net.Http;
-using Newtonsoft.Json;
-using System.Threading;
-using System.Reflection;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Emun.CoinMarketCap.Models;
-using Emun.CoinMarketCap.Internal;
+﻿using System.Net.Http;
+using ImanN.CoinMarketCap.Internal;
 
-namespace Emun.CoinMarketCap {
+namespace ImanN.CoinMarketCap {
 
     /// <inheritdoc/>
     public class CoinMarketCapAPI: ICoinMarketCapAPI {

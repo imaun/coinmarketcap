@@ -5,11 +5,7 @@ VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3491CB6F-AB58-4CFE-B529-68CBFA886A7E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emun.CoinMarketCap", "src\Emun.CoinMarketCap\Emun.CoinMarketCap.csproj", "{BCCB130D-6C21-4E2C-B310-55D3422AC933}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{95D3181E-A0D5-47D2-ADD7-C32CBF00EC8B}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emun.CoinMarketCap.CliSample", "samples\Emun.CoinMarketCap.CliSample\Emun.CoinMarketCap.CliSample.csproj", "{EBB012C0-481A-41E0-A9B8-68E7C03A570D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinMarketCapAPI", "src\CoinMarketCapAPI\CoinMarketCapAPI.csproj", "{BCCB130D-6C21-4E2C-B310-55D3422AC933}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{20387BF7-0BC5-45E2-B4CE-416E238C68DA}"
 	ProjectSection(SolutionItems) = preProject

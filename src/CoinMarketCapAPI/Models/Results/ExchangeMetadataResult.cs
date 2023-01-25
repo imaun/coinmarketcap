@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Emun.CoinMarketCap.Models;
+﻿using System.Collections.Generic;
+using ImanN.CoinMarketCap.Models;
 
-namespace Emun.CoinMarketCap {
+namespace ImanN.CoinMarketCap {
 
     public class ExchangeMetadataResult : ApiResponse<Dictionary<string, List<ExchangeMetadata>>> {
 

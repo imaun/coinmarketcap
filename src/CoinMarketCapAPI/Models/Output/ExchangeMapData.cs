@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Newtonsoft.Json;
 
-namespace Emun.CoinMarketCap.Models
+namespace ImanN.CoinMarketCap.Models
 {
     public class ExchangeMapData
     {

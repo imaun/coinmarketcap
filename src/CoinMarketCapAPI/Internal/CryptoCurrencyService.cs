@@ -3,9 +3,9 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Emun.CoinMarketCap.Models;
+using ImanN.CoinMarketCap.Models;
 
-namespace Emun.CoinMarketCap.Internal {
+namespace ImanN.CoinMarketCap.Internal {
 
     internal class CryptoCurrencyService : CoinMarketCapBaseService, ICryptoCurrencyService {
 

@@ -1,4 +1,4 @@
-﻿namespace Emun.CoinMarketCap {
+﻿namespace ImanN.CoinMarketCap {
 
     /// <summary>
     /// Provides CoinMarketCap API Pro v1 endpoint services.

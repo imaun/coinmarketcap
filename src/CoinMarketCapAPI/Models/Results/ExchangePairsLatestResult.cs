@@ -1,4 +1,4 @@
-namespace Emun.CoinMarketCap.Models {
+namespace ImanN.CoinMarketCap.Models {
 
     public class ExchangePairsLatestResult {
 
