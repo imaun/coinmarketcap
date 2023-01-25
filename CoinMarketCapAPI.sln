@@ -22,17 +22,13 @@ Global
 		{BCCB130D-6C21-4E2C-B310-55D3422AC933}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCCB130D-6C21-4E2C-B310-55D3422AC933}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCCB130D-6C21-4E2C-B310-55D3422AC933}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EBB012C0-481A-41E0-A9B8-68E7C03A570D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EBB012C0-481A-41E0-A9B8-68E7C03A570D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EBB012C0-481A-41E0-A9B8-68E7C03A570D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EBB012C0-481A-41E0-A9B8-68E7C03A570D}.Release|Any CPU.Build.0 = Release|Any CPU
+		
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BCCB130D-6C21-4E2C-B310-55D3422AC933} = {3491CB6F-AB58-4CFE-B529-68CBFA886A7E}
-		{EBB012C0-481A-41E0-A9B8-68E7C03A570D} = {95D3181E-A0D5-47D2-ADD7-C32CBF00EC8B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FF490B51-7EA8-4B15-9BE2-B03B8E2D6B8E}
