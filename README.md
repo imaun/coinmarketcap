@@ -29,6 +29,15 @@ git clone https://github.com/imaun/coinmarketcap.git
 dotnet build
 ```
 
+### or Alternatively install `ImanN.CoinMarketCap` from nuget :
+```cli
+dotnet add package ImanN.CoinMarketCap --version 1.0.0
+```
+or with package manager console :
+```cli
+Install-Package ImanN.CoinMarketCap -Version 1.0.0
+```
+
 ### 3. Get your own API Key from [here](https://pro.coinmarketcap.com/signup/)
 
 ### 4. Add CoinMarketCapAPI services in startup
@@ -43,7 +52,7 @@ public void ConfigureServices(IServiceCollection services)
 ### 5. Inject `ICoinMarketCapAPI` and use it
 ```cs
 using System.Threading.Tasks;
-using Emun.CoinMarketCap;
+using ImanN.CoinMarketCap;
 
 namespace Sample {
 
@@ -63,4 +72,7 @@ namespace Sample {
 
 }
 ```
+
+## Questions & Contact
+You can contact me via email : imun22 at gmail or hi at imaun.ir
 
