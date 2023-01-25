@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Emun.CoinMarketCap</RootNamespace>
   </PropertyGroup>
   <PropertyGroup>
     <LangVersion>8.0</LangVersion>
